@@ -1,86 +1,108 @@
+// src/App.tsx
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
+import React from "react";
+
+import { AuthProvider, useAuth } from "@/lib/auth";
+
+// Public pages (unchanged)
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-
-import { AuthProvider, useAuth } from "@/auth/AuthContext";
-import React, { useEffect } from "react";
-
-// Solution pages
 import IdentityAccessManagement from "./pages/solutions/IdentityAccessManagement";
 import GRCConsultancy from "./pages/solutions/GRCConsultancy";
 import CloudSecurity from "./pages/solutions/CloudSecurity";
-
-// Company pages
 import About from "./pages/company/About";
 import Careers from "./pages/company/Careers";
-
-// Resource pages
 import Blog from "./pages/resources/Blog";
 import VideosAndDemos from "./pages/resources/VideosAndDemos";
 import Documentation from "./pages/resources/Documentation";
-
-// products
 import ProductsIAG from "./pages/ProductsIAG";
-
-// Other pages
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
 
-import Login from "./pages/Login";
-import ProtectedRoute from "./components/ProtectedRoute";
+// Admin
 import AdminDashboard from "./pages/admin/Dashboard";
-import AuthCallbackHandler from "@/components/AuthCallbackHandler";
+import AdminLogin from "./pages/admin/Login";
 
 const queryClient = new QueryClient();
+
+/** Shows login at /admin, or redirects admins to /admin/dashboard */
+function AdminSwitch() {
+  const { user, ready } = useAuth();
+  if (!ready) {
+    return <div className="min-h-[60vh] flex items-center justify-center text-muted-foreground">Loading…</div>;
+  }
+  if (user?.is_admin) {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+  return <AdminLogin />;
+}
+
+/** Protects nested routes so only admins can access */
+function RequireAdmin() {
+  const { user, ready } = useAuth();
+  const location = useLocation();
+
+  if (!ready) {
+    return <div className="min-h-[60vh] flex items-center justify-center text-muted-foreground">Loading…</div>;
+  }
+  if (!user || !user.is_admin) {
+    // bounce to /admin (login) and remember where we tried to go
+    return <Navigate to="/admin" replace state={{ from: location.pathname }} />;
+  }
+  return <Outlet />;
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/auth/google/callback" element={<AuthCallbackHandler />} />
-          
-          {/* Solution Routes */}
-          <Route path="/solutions/identity-access-management" element={<IdentityAccessManagement />} />
-          <Route path="/solutions/grc-consultancy" element={<GRCConsultancy />} />
-          <Route path="/solutions/cloud-security" element={<CloudSecurity />} />
-          
-          {/* Company Routes */}
-          <Route path="/company/about" element={<About />} />
-          <Route path="/company/careers" element={<Careers />} />
-          
-          {/* Resource Routes */}
-          <Route path="/resources/blog" element={<Blog />} />
-          <Route path="/resources/videos-demos" element={<VideosAndDemos />} />
-          <Route path="/resources/documentation" element={<Documentation />} />
-          
-          {/* Other Routes */}
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/demo" element={<Demo />} />
-          // In your App.tsx, make sure you have this route:
-          <Route path="/products/iag" element={<ProductsIAG />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
 
+            {/* Solutions */}
+            <Route path="/solutions/identity-access-management" element={<IdentityAccessManagement />} />
+            <Route path="/solutions/grc-consultancy" element={<GRCConsultancy />} />
+            <Route path="/solutions/cloud-security" element={<CloudSecurity />} />
 
-          <Route path="/login" element={<Login />} />
+            {/* Company */}
+            <Route path="/company/about" element={<About />} />
+            <Route path="/company/careers" element={<Careers />} />
 
-          {/* Protected admin routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          </Route>
-          
-          {/* Catch-all route for 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+            {/* Resources */}
+            <Route path="/resources/blog" element={<Blog />} />
+            <Route path="/resources/videos-demos" element={<VideosAndDemos />} />
+            <Route path="/resources/documentation" element={<Documentation />} />
+
+            {/* Products */}
+            <Route path="/products/iag" element={<ProductsIAG />} />
+
+            {/* Other */}
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/demo" element={<Demo />} />
+
+            {/* Admin entry — if not authed, shows login; if authed, redirects to /admin/dashboard */}
+            <Route path="/admin" element={<AdminSwitch />} />
+
+            {/* Admin protected routes */}
+            <Route element={<RequireAdmin />}>
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              {/* Add more protected admin routes here as needed */}
+            </Route>
+
+            {/* 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

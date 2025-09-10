@@ -258,24 +258,27 @@ const Contact = () => {
                 </CardContent>
               </Card>
 
-              <Card className="card-hover">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-4">Customer Support</h3>
-                  <p className="text-muted-foreground mb-4">
-                    For existing customers, access our dedicated support portal
-                    for faster assistance.
-                  </p>
-                  <Button variant="outline" asChild>
-                    <a
-                      href="https://support.welfordsystems.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit Support Portal
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+{/*
+<Card className="card-hover">
+  <CardContent className="p-8">
+    <h3 className="text-xl font-bold mb-4">Customer Support</h3>
+    <p className="text-muted-foreground mb-4">
+      For existing customers, access our dedicated support portal
+      for faster assistance.
+    </p>
+    <Button variant="outline" asChild>
+      <a
+        href="https://support.welfordsystems.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Visit Support Portal
+      </a>
+    </Button>
+  </CardContent>
+</Card>
+*/}
+
             </div>
           </div>
         </div>

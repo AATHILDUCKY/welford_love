@@ -15,7 +15,8 @@ type MenuItem = { name: string; href: string; description?: string };
 
 const NAV_HOVER_BG = "hover:bg-[#032955]/10";
 const NAV_HOVER_TEXT = "hover:text-[#032955]";
-const NAV_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#032955]/30";
+const NAV_RING =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#032955]/30";
 const NAV_TRANSITION = "transition-colors duration-150";
 
 const Header = () => {
@@ -48,15 +49,21 @@ const Header = () => {
   ];
 
   const resources: MenuItem[] = [
-    { name: "Blog", href: "/resources/blog", description: "Latest insights and updates" },
-    { name: "Videos & Demos", href: "/resources/videos-demos", description: "Product demonstrations" },
-    { name: "Documentation", href: "/resources/documentation", description: "Technical documentation" },
-  ];
-
-  // Company pages you asked for
-  const company: MenuItem[] = [
-    { name: "About Us", href: "/company/about", description: "Learn more about Welford Systems" },
-    { name: "Careers", href: "/company/careers", description: "Join our team and build the future" },
+    {
+      name: "Blog",
+      href: "/resources/blog",
+      description: "Latest insights and updates",
+    },
+    {
+      name: "Videos & Demos",
+      href: "/resources/videos-demos",
+      description: "Product demonstrations",
+    },
+    {
+      name: "Documentation",
+      href: "/resources/documentation",
+      description: "Technical documentation",
+    },
   ];
 
   // Hover popover helper (prevents flicker)
@@ -77,7 +84,7 @@ const Header = () => {
     return { open, setOpen, onMouseEnter, onMouseLeave };
   };
 
-  // Reusable popover menu (for Solutions / Products / Resources / Company)
+  // Reusable popover menu (for Solutions / Products / Resources)
   const NavPopover = ({
     label,
     items,
@@ -173,7 +180,7 @@ const Header = () => {
             <NavPopover label="Products" items={products} width={320} />
             <NavPopover label="Resources" items={resources} width={320} />
 
-            {/* Partners – simple link but styled consistently */}
+            {/* Partners */}
             <Link
               to="/partners"
               className={cn(
@@ -187,8 +194,33 @@ const Header = () => {
               Partners
             </Link>
 
-            {/* Company dropdown with About & Careers */}
-            <NavPopover label="Company" items={company} width={320} />
+            {/* About Us */}
+            <Link
+              to="/company/about"
+              className={cn(
+                "inline-flex h-11 items-center rounded-xl px-4 text-[15px] font-semibold",
+                NAV_HOVER_BG,
+                NAV_HOVER_TEXT,
+                NAV_RING,
+                NAV_TRANSITION
+              )}
+            >
+              About Us
+            </Link>
+
+            {/* Careers */}
+            <Link
+              to="/company/careers"
+              className={cn(
+                "inline-flex h-11 items-center rounded-xl px-4 text-[15px] font-semibold",
+                NAV_HOVER_BG,
+                NAV_HOVER_TEXT,
+                NAV_RING,
+                NAV_TRANSITION
+              )}
+            >
+              Careers
+            </Link>
           </nav>
 
           {/* CTA Buttons */}
@@ -222,7 +254,7 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[88vw] sm:w-[360px]">
               <div className="mt-6 flex flex-col space-y-5">
-                {/* Search-ready header (optional quick polish) */}
+                {/* Header */}
                 <div className="flex items-center gap-3">
                   <img
                     src={LogoImage}
@@ -236,7 +268,9 @@ const Header = () => {
 
                 {/* Solutions */}
                 <div>
-                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">Solutions</h4>
+                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">
+                    Solutions
+                  </h4>
                   <div className="flex flex-col">
                     {solutions.map((item) => (
                       <Link
@@ -258,7 +292,9 @@ const Header = () => {
 
                 {/* Products */}
                 <div>
-                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">Products</h4>
+                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">
+                    Products
+                  </h4>
                   <div className="flex flex-col">
                     {products.map((item) => (
                       <Link
@@ -280,7 +316,9 @@ const Header = () => {
 
                 {/* Resources */}
                 <div>
-                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">Resources</h4>
+                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">
+                    Resources
+                  </h4>
                   <div className="flex flex-col">
                     {resources.map((item) => (
                       <Link
@@ -314,27 +352,33 @@ const Header = () => {
                   Partners
                 </Link>
 
-                {/* Company */}
-                <div>
-                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">Company</h4>
-                  <div className="flex flex-col">
-                    {company.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={cn(
-                          "rounded-lg py-2.5 pl-3 text-[15px] font-medium",
-                          NAV_HOVER_BG,
-                          NAV_HOVER_TEXT,
-                          NAV_TRANSITION
-                        )}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                {/* About Us */}
+                <Link
+                  to="/company/about"
+                  className={cn(
+                    "rounded-lg py-2.5 text-[15px] font-semibold",
+                    NAV_HOVER_BG,
+                    NAV_HOVER_TEXT,
+                    NAV_TRANSITION
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  About Us
+                </Link>
+
+                {/* Careers */}
+                <Link
+                  to="/company/careers"
+                  className={cn(
+                    "rounded-lg py-2.5 text-[15px] font-semibold",
+                    NAV_HOVER_BG,
+                    NAV_HOVER_TEXT,
+                    NAV_TRANSITION
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Careers
+                </Link>
 
                 {/* CTAs */}
                 <div className="space-y-3 border-t border-border pt-4">
