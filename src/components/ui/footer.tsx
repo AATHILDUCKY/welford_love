@@ -18,11 +18,11 @@ const Footer = () => {
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>support@welfordsystems.com</span>
+                <span>info@welfordsystems.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4" />
-                <span>+1 (800) 123-4567</span>
+                <span>+44 203 442 0741</span>
               </div>
             </div>
           </div>
@@ -72,16 +72,6 @@ const Footer = () => {
                 <Link to="/resources/documentation" className="text-background/80 hover:text-primary transition-colors">
                   Documentation
                 </Link>
-              </li>
-              <li>
-                <a 
-                  href="https://support.welfordsystems.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-background/80 hover:text-primary transition-colors"
-                >
-                  Customer Support
-                </a>
               </li>
             </ul>
           </div>
