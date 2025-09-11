@@ -43,7 +43,7 @@ const Header = () => {
   const products: MenuItem[] = [
     {
       name: "Identity & Access Governance",
-      href: "/products/iag",
+      href: "/products/welford-iag",
       description: "Unified access governance platform",
     },
   ];
