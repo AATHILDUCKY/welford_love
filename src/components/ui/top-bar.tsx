@@ -7,10 +7,10 @@ const TopBar = () => {
       <div className="h-0.5 bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700" />
 
       <div className="container mx-auto px-3 sm:px-4">
-        {/* Force single row + allow scroll on mobile */}
-        <div className="flex items-center justify-between gap-4 h-12 overflow-x-auto whitespace-nowrap">
+        {/* Single row, smaller height, consistent icon size */}
+        <div className="flex items-center justify-between gap-4 h-8 overflow-x-auto whitespace-nowrap text-xs sm:text-sm">
           {/* Contact Info */}
-          <div className="flex items-center gap-6 text-xs sm:text-sm">
+          <div className="flex items-center gap-4 sm:gap-6">
             <a
               href="tel:+442034420741"
               className="flex items-center gap-2 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/60 rounded-md px-1"
@@ -41,7 +41,7 @@ const TopBar = () => {
               className="p-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/60 rounded-md"
               aria-label="Twitter"
             >
-              <Twitter className="w-5 h-5" />
+              <Twitter className="w-4 h-4" />
             </a>
 
             <a
@@ -51,7 +51,7 @@ const TopBar = () => {
               className="p-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/60 rounded-md"
               aria-label="Facebook"
             >
-              <Facebook className="w-5 h-5" />
+              <Facebook className="w-4 h-4" />
             </a>
 
             <a
@@ -61,7 +61,7 @@ const TopBar = () => {
               className="p-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/60 rounded-md"
               aria-label="LinkedIn"
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-4 h-4" />
             </a>
 
             <a
@@ -71,7 +71,7 @@ const TopBar = () => {
               className="p-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/60 rounded-md"
               aria-label="YouTube"
             >
-              <Youtube className="w-5 h-5" />
+              <Youtube className="w-4 h-4" />
             </a>
           </div>
         </div>

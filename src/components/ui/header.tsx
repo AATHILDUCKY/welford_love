@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, ChevronDown } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Menu, ChevronDown, X } from "lucide-react";
 import LogoImage from "@/assets/welfordsystems_logo.jpeg";
 import {
   Popover,
@@ -10,6 +10,14 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+
+/* ✅ NEW: Accordion for mobile dropdowns */
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 type MenuItem = { name: string; href: string; description?: string };
 
@@ -174,7 +182,7 @@ const Header = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation (unchanged) */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
             <NavPopover label="Solutions" items={solutions} width={400} />
             <NavPopover label="Products" items={products} width={320} />
@@ -223,7 +231,7 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons (desktop unchanged) */}
           <div className="hidden lg:flex items-center gap-3">
             <Link to="/contact">
               <Button
@@ -245,143 +253,195 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu — UI ONLY CHANGED BELOW */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon" className={NAV_RING}>
+              <Button variant="ghost" size="icon" className={NAV_RING} aria-label="Open menu">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[88vw] sm:w-[360px]">
-              <div className="mt-6 flex flex-col space-y-5">
-                {/* Header */}
+
+            <SheetContent side="right" className="w-[88vw] sm:w-[360px] p-0">
+              {/* Sticky header inside sheet with CLEAR CLOSE BUTTON */}
+              <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-background/80 backdrop-blur px-4 py-3">
                 <div className="flex items-center gap-3">
                   <img
                     src={LogoImage}
                     alt="Welford Systems Logo"
                     className="h-9 w-9 rounded-md object-cover"
                   />
-                  <div className="text-base font-bold text-[#032955]">
-                    Welford Systems
-                  </div>
+                  <div className="text-base font-bold text-[#032955]">Welford Systems</div>
                 </div>
 
-                {/* Solutions */}
-                <div>
-                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">
-                    Solutions
-                  </h4>
-                  <div className="flex flex-col">
-                    {solutions.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={cn(
-                          "rounded-lg py-2.5 pl-3 text-[15px] font-medium",
-                          NAV_HOVER_BG,
-                          NAV_HOVER_TEXT,
-                          NAV_TRANSITION
-                        )}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
+                {/* ✅ Clear Close action (large tap target) */}
+                <SheetClose asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={cn(
+                      "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium",
+                      NAV_RING
+                    )}
+                    aria-label="Close menu"
+                  >
+                    <X className="h-4 w-4" />
+                    <span className="hidden xs:inline">Close</span>
+                  </Button>
+                </SheetClose>
+              </div>
+
+              <div className="px-2 py-2">
+                {/* ✅ Clear note: list items are dropdowns */}
+                <div className="px-2 pb-2 pt-1 text-xs text-muted-foreground">
+                  Browse sections below — tap to expand the dropdown.
                 </div>
 
-                {/* Products */}
-                <div>
-                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">
-                    Products
-                  </h4>
-                  <div className="flex flex-col">
-                    {products.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={cn(
-                          "rounded-lg py-2.5 pl-3 text-[15px] font-medium",
-                          NAV_HOVER_BG,
-                          NAV_HOVER_TEXT,
-                          NAV_TRANSITION
-                        )}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
+                {/* ✅ Accordion dropdowns for mobile */}
+                <Accordion type="multiple" className="w-full">
+                  {/* Solutions */}
+                  <AccordionItem value="solutions" className="border-b">
+                    <AccordionTrigger className="px-2 py-3 text-left text-[15px] font-semibold">
+                      Solutions
+                    </AccordionTrigger>
+                    <AccordionContent className="px-1 pb-3">
+                      <div className="flex flex-col">
+                        {solutions.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className={cn(
+                              "rounded-lg px-3 py-2.5 text-[15px] font-medium",
+                              "border border-transparent hover:border-border",
+                              NAV_HOVER_BG,
+                              NAV_HOVER_TEXT,
+                              NAV_TRANSITION
+                            )}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <div>{item.name}</div>
+                            {item.description && (
+                              <div className="mt-1 text-[13px] text-muted-foreground">
+                                {item.description}
+                              </div>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Products */}
+                  <AccordionItem value="products" className="border-b">
+                    <AccordionTrigger className="px-2 py-3 text-left text-[15px] font-semibold">
+                      Products
+                    </AccordionTrigger>
+                    <AccordionContent className="px-1 pb-3">
+                      <div className="flex flex-col">
+                        {products.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className={cn(
+                              "rounded-lg px-3 py-2.5 text-[15px] font-medium",
+                              "border border-transparent hover:border-border",
+                              NAV_HOVER_BG,
+                              NAV_HOVER_TEXT,
+                              NAV_TRANSITION
+                            )}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <div>{item.name}</div>
+                            {item.description && (
+                              <div className="mt-1 text-[13px] text-muted-foreground">
+                                {item.description}
+                              </div>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Resources */}
+                  <AccordionItem value="resources" className="border-b">
+                    <AccordionTrigger className="px-2 py-3 text-left text-[15px] font-semibold">
+                      Resources
+                    </AccordionTrigger>
+                    <AccordionContent className="px-1 pb-3">
+                      <div className="flex flex-col">
+                        {resources.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className={cn(
+                              "rounded-lg px-3 py-2.5 text-[15px] font-medium",
+                              "border border-transparent hover:border-border",
+                              NAV_HOVER_BG,
+                              NAV_HOVER_TEXT,
+                              NAV_TRANSITION
+                            )}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <div>{item.name}</div>
+                            {item.description && (
+                              <div className="mt-1 text-[13px] text-muted-foreground">
+                                {item.description}
+                              </div>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                {/* Singles (Partners / About / Careers) */}
+                <div className="mt-2 space-y-1 px-2">
+                  <Link
+                    to="/partners"
+                    className={cn(
+                      "block rounded-lg px-3 py-2.5 text-[15px] font-semibold",
+                      "border border-transparent hover:border-border",
+                      NAV_HOVER_BG,
+                      NAV_HOVER_TEXT,
+                      NAV_TRANSITION
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Partners
+                  </Link>
+
+                  <Link
+                    to="/company/about"
+                    className={cn(
+                      "block rounded-lg px-3 py-2.5 text-[15px] font-semibold",
+                      "border border-transparent hover:border-border",
+                      NAV_HOVER_BG,
+                      NAV_HOVER_TEXT,
+                      NAV_TRANSITION
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    About Us
+                  </Link>
+
+                  <Link
+                    to="/company/careers"
+                    className={cn(
+                      "block rounded-lg px-3 py-2.5 text-[15px] font-semibold",
+                      "border border-transparent hover:border-border",
+                      NAV_HOVER_BG,
+                      NAV_HOVER_TEXT,
+                      NAV_TRANSITION
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Careers
+                  </Link>
                 </div>
-
-                {/* Resources */}
-                <div>
-                  <h4 className="mb-2 text-sm font-semibold text-foreground/80">
-                    Resources
-                  </h4>
-                  <div className="flex flex-col">
-                    {resources.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={cn(
-                          "rounded-lg py-2.5 pl-3 text-[15px] font-medium",
-                          NAV_HOVER_BG,
-                          NAV_HOVER_TEXT,
-                          NAV_TRANSITION
-                        )}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Partners */}
-                <Link
-                  to="/partners"
-                  className={cn(
-                    "rounded-lg py-2.5 text-[15px] font-semibold",
-                    NAV_HOVER_BG,
-                    NAV_HOVER_TEXT,
-                    NAV_TRANSITION
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Partners
-                </Link>
-
-                {/* About Us */}
-                <Link
-                  to="/company/about"
-                  className={cn(
-                    "rounded-lg py-2.5 text-[15px] font-semibold",
-                    NAV_HOVER_BG,
-                    NAV_HOVER_TEXT,
-                    NAV_TRANSITION
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  About Us
-                </Link>
-
-                {/* Careers */}
-                <Link
-                  to="/company/careers"
-                  className={cn(
-                    "rounded-lg py-2.5 text-[15px] font-semibold",
-                    NAV_HOVER_BG,
-                    NAV_HOVER_TEXT,
-                    NAV_TRANSITION
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Careers
-                </Link>
 
                 {/* CTAs */}
-                <div className="space-y-3 border-t border-border pt-4">
+                <div className="mt-4 space-y-3 border-t border-border px-2 pt-4">
                   <Link to="/contact" onClick={() => setIsOpen(false)}>
                     <Button
                       variant="outline"
