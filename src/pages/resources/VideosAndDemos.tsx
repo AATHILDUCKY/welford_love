@@ -251,29 +251,29 @@ const VideosAndDemos = () => {
   const featuredDemo: VideoItem = {
     title: "Welford IAG – Product Overview",
     description: "Quick walkthrough of access management, automation, and compliance.",
-    duration: "12:34",
+    duration: "1:50",
     views: "2.5K views",
     url: "https://youtu.be/Ge-d085a6HI?si=xRHEsL8WABqerGNI",
   };
 
   const productDemos: VideoItem[] = [
     {
-      title: "Access Lifecycle Automation",
-      duration: "8:45",
+      title: "Managing Azure Cloud Access in Welford IAG",
+      duration: "1:38",
       views: "1.8K views",
-      url: "https://www.youtube.com/watch?v=Ge-d085a6HI&ab_channel=Welford", // example
+      url: "https://www.youtube.com/watch?v=nRvgMJ6oHfg", // example
     },
     {
-      title: "Cloud Integration (AWS, Azure, GCP)",
-      duration: "10:22",
+      title: "Managing Windows 365 & Microsoft 365 in Welford IAG",
+      duration: "3:18",
       views: "1.2K views",
-      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // example
+      url: "https://www.youtube.com/watch?v=Ai3E8eac53A", // example
     },
     {
-      title: "Identity Governance in Action",
-      duration: "15:18",
+      title: "Managing Linux Server Access in Welford IAG ",
+      duration: "2:14",
       views: "2.1K views",
-      url: "https://www.youtube.com/embed/jNQXAC9IVRw", // example
+      url: "https://www.youtube.com/watch?v=RCWWZyeOGpE", // example
     },
   ];
 
@@ -288,13 +288,13 @@ const VideosAndDemos = () => {
       title: "Contractor Access Management",
       duration: "7:45",
       views: "750 views",
-      url: "https://www.youtube.com/watch?v=ysz5S6PUM-U", // example
+      url: "https://www.youtube.com/embed/nRvgMJ6oHfg?si=S1EKub23gTkpVFv8", // example
     },
     {
       title: "Leaver Automation",
       duration: "5:20",
       views: "630 views",
-      url: "https://www.youtube.com/watch?v=kJQP7kiw5Fk", // example
+      url: "https://www.youtube.com/embed/nRvgMJ6oHfg?si=S1EKub23gTkpVFv8", // example
     },
   ];
 

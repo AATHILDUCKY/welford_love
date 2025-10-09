@@ -24,6 +24,20 @@ import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
 
+// Blog posts
+import 
+{ 
+  RansomwareStartsWithAccess,
+  AutonomousAccessFulfilment,
+  WelfordJoinsMicrosoftForStartups,
+  FromPerimeterToIdentity,
+  OverPrivilegedAccounts,
+  EntitlementProvisioning,
+  RevolutionizingLinuxAccess,
+} from "@/components/blogs";
+
+
+
 // Admin
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminLogin from "./pages/admin/Login";
@@ -97,6 +111,15 @@ const App = () => (
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               {/* Add more protected admin routes here as needed */}
             </Route>
+
+            {/* blog posts */}
+            <Route path="/resources/blog/from-perimeter-to-identity" element={<FromPerimeterToIdentity />} />
+            <Route path="/resources/blog/ransomware-readiness-begins-with-access-control" element={<RansomwareStartsWithAccess />} />
+            <Route path="/resources/blog/autonomous-access-fulfilment" element={<AutonomousAccessFulfilment />} /> 
+            <Route path="/resources/blog/welford-joins-microsoft-for-startups" element={<WelfordJoinsMicrosoftForStartups />} />
+            <Route path="/resources/blog/ending-over-privilege-autonomous-identity-governance" element={<OverPrivilegedAccounts />} />
+            <Route path="/resources/blog/closing-the-entitlement-provisioning-gap" element={<EntitlementProvisioning />} />
+            <Route path="/resources/blog/revolutionizing-linux-access-with-welford-iag" element={<RevolutionizingLinuxAccess />} />
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />

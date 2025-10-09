@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Animations --- */
+@layer utilities {
+  @keyframes fade-in { from {opacity:0; transform:translateY(6px)} to {opacity:1; transform:none} }
+  @keyframes slide-in { from {opacity:0; transform:translateX(8px)} to {opacity:1; transform:none} }
+  @keyframes underline-in { from {transform:scaleX(0)} to {transform:scaleX(1)} }
+  @keyframes pulse-dot { 0%,100% { transform:scale(1); opacity:.7 } 50% { transform:scale(1.35); opacity:1 } }
+  .animate-fade-in { animation: fade-in .4s ease-out both }
+  .animate-slide-in { animation: slide-in .35s ease-out both }
+}
+
+/* --- Article Typography --- */
+@layer components {
+  .post { @apply text-gray-800 leading-relaxed; }
+
+  /* Container rhythm */
+  .post-container { @apply container mx-auto px-6 max-w-3xl md:max-w-4xl; }
+
+  /* Headings hierarchy */
+  .post h1 {
+    @apply text-4xl md:text-5xl font-extrabold tracking-tight leading-tight;
+    color:#032955;
+    margin-top:.25rem; margin-bottom:1.25rem;
+    letter-spacing:-.01em;
+  }
+
+  .post h2 {
+    @apply text-2xl md:text-3xl font-bold leading-snug;
+    color:#032955;
+    margin-top:3rem; margin-bottom:1rem;
+    position:relative;
+  }
+  .post h2::after {
+    content:""; position:absolute; left:0; bottom:-.5rem; height:3px; width:56px;
+    background:linear-gradient(90deg,#032955 0%, rgba(3,41,85,.2) 100%);
+    border-radius:9999px; transform-origin:left; animation: underline-in .5s ease-out;
+  }
+
+  .post h3 {
+    @apply text-xl md:text-2xl font-semibold leading-snug;
+    color:#032955; margin-top:2.25rem; margin-bottom:.75rem;
+  }
+
+  /* Optional heading anchor (shows on hover) */
+  .post h2 .heading-anchor, .post h3 .heading-anchor {
+    @apply opacity-0 ml-2 align-middle text-gray-400 no-underline;
+    transition:opacity .2s ease;
+  }
+  .post h2:hover .heading-anchor, .post h3:hover .heading-anchor { @apply opacity-100; }
+
+  /* Body copy */
+  .post p {
+    font-size:1.18rem; line-height:1.85; @apply text-gray-800;
+    margin-top:1.1rem; margin-bottom:1.1rem;
+  }
+
+  /* Lists */
+  .post ul { @apply list-disc pl-6; margin-top:.75rem; margin-bottom:1.25rem; }
+  .post li { @apply my-1; line-height:1.85; }
+
+  /* Blockquotes (soft gradient border + subtle backdrop) */
+.post blockquote {
+  @apply rounded-xl italic font-semibold text-slate-900 bg-gradient-to-r from-sky-50 to-indigo-50;
+  border-left: 6px solid #0369a1;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+}
+
+
+
+  /* Inline links with animated underline */
+  .post a {
+    color:#032955; text-decoration:none; position:relative;
+  }
+  .post a::after {
+    content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+    background:rgba(3,41,85,.35); transform-origin:left; transform:scaleX(0);
+    transition:transform .25s ease, background .25s ease;
+  }
+  .post a:hover::after { transform:scaleX(1); background:#032955; }
+
+  /* Figures */
+  .post figure img { @apply rounded-xl shadow-lg w-full object-cover; }
+  .post figcaption { @apply text-sm text-gray-500 mt-3 text-center; }
+
+  /* Meta row (author/date/read time) */
+  .post-meta { @apply flex flex-wrap justify-center items-center gap-4 text-sm text-gray-500; }
+
+  /* Category pill */
+  .post-category {
+    @apply inline-block text-xs md:text-sm font-medium uppercase tracking-wide mb-4 px-4 py-1 rounded-full;
+    color:#032955; background-color:rgb(3 41 85 / .08);
+    box-shadow: 0 0 0 1px rgb(3 41 85 / .08) inset;
+  }
+
+  /* Callout (used in your ShieldCheck row) */
+  .post-callout {
+    @apply flex gap-3 items-start rounded-xl p-4 my-6;
+    background:linear-gradient(180deg, rgba(3,41,85,.06), rgba(3,41,85,.03));
+    border:1px solid rgba(3,41,85,.12);
+  }
+
+  /* Horizontal rule option if ever needed */
+  .post hr { @apply my-10 border-0 h-px bg-gray-200; }
+}
+
+/* --- Table of Contents (site widget) --- */
+@layer components {
+  /* Desktop sticky widget (used when <nav aria-label="Table of contents"> is in sidebar) */
+  .post-toc {
+    @apply sticky top-24 p-4 rounded-2xl text-sm bg-white shadow-sm;
+    border:1px solid rgba(3,41,85,.12);
+    backdrop-filter:saturate(140%) blur(4px);
+  }
+
+  .post-toc__title {
+    @apply font-semibold mb-2 flex items-center gap-2;
+    color:#032955;
+  }
+
+  .post-toc__list { @apply space-y-1; }
+
+  .post-toc__item { @apply block rounded-lg px-2 py-1 transition-all duration-200 ease-out; }
+  .post-toc__item:hover { @apply bg-gray-50; transform:translateX(2px); }
+
+  .post-toc__item.is-active {
+    color:#032955; @apply font-semibold bg-gray-50;
+    box-shadow: inset 2px 0 0 0 #03295522;
+  }
+
+  /* Level indenting */
+  .post-toc__item.level-3 { @apply pl-4; }
+
+  /* Little active dot animation (optional) */
+  .post-toc__item.is-active::before {
+    content:""; display:inline-block; width:6px; height:6px; margin-right:.5rem;
+    border-radius:9999px; background:#032955; animation:pulse-dot 1.2s infinite ease-out;
+  }
+
+  /* Mobile drawer/card version */
+  .post-toc--mobile {
+    @apply rounded-xl border p-3 bg-white;
+    border-color:#e5e7eb;
+    box-shadow:0 6px 30px rgb(3 41 85 / .08);
+  }
+  .post-toc--mobile .post-toc__list { @apply max-h-72 overflow-auto pr-1; }
+
+  /* Smooth scroll behavior for browsers that honor it */
+  html:has(.post) { scroll-behavior:smooth; }
+}
+
+/* --- Optional: reading progress bar (mount a fixed div with .post-progress) --- */
+@layer components {
+  .post-progress {
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:#032955; z-index:50; box-shadow:0 0 12px #032955aa;
+    transition:width .15s linear;
+  }
+}
