@@ -1,5 +1,5 @@
 // /components/tableofcontent.tsx
-// Reusable, integrated Table of Contents (no card/shadows)
+// Reusable, integrated Table of Contents (modern right rail)
 // npm i react-scrollspy clsx
 import { useEffect } from "react";
 import Scrollspy from "react-scrollspy";
@@ -55,18 +55,22 @@ export default function TableOfContent({
   const ids = items.map((i) => i.id);
 
   return (
-    <div
+    <nav
+      aria-label="Table of contents"
       className={clsx(
-        // Integrated rail container (no card feel)
-        "bg-transparent",
+        // Give the rail its own stacking context and background so it never "overlays" content
+        "relative z-0 bg-transparent",
         // Keep rail scrollable, but discreet
         "max-h-[78vh] overflow-auto pr-2",
+        // Native scrollbar light touch
         "[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full",
         "[&::-webkit-scrollbar-thumb]:bg-slate-300/60 hover:[&::-webkit-scrollbar-thumb]:bg-slate-400/80",
+        // Own border-left (instead of absolute line from parent)
+        "border-l border-slate-200/80 pl-3",
         className
       )}
     >
-      {/* Rail header — compact, inline with page */}
+      {/* Rail header — compact */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2 text-slate-800">
           <ListTree className="w-5 h-5 text-sky-700" />
@@ -122,7 +126,7 @@ export default function TableOfContent({
           .toc-active > a::before {
             content: "";
             position: absolute;
-            left: -16px;            /* hugs the rail separator line */
+            left: -12px;
             top: 10px;
             height: 22px;
             width: 3px;
@@ -131,6 +135,6 @@ export default function TableOfContent({
           }
         `}
       </style>
-    </div>
+    </nav>
   );
 }
