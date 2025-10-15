@@ -230,7 +230,7 @@ const Contact = () => {
                       <div>
                         <h4 className="font-semibold">Email</h4>
                         <p className="text-muted-foreground">
-                          support@welfordsystems.com
+                          info@welfordsystems.com
                         </p>
                       </div>
                     </div>
@@ -238,7 +238,7 @@ const Contact = () => {
                       <Phone className="w-6 h-6 text-primary mt-1" />
                       <div>
                         <h4 className="font-semibold">Phone</h4>
-                        <p className="text-muted-foreground">+1 (800) 123-4567</p>
+                        <p className="text-muted-foreground">+44 203 442 0741</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
@@ -246,11 +246,15 @@ const Contact = () => {
                       <div>
                         <h4 className="font-semibold">Office</h4>
                         <p className="text-muted-foreground">
-                          123 Security Street
+                          Shelton Street,
                           <br />
-                          Cybersecurity District
+                          Covent Garden,
                           <br />
-                          Tech City, TC 12345
+                          London,
+                          <br />
+                          WC2H 9JQ
+                          <br />
+                          United Kingdom
                         </p>
                       </div>
                     </div>

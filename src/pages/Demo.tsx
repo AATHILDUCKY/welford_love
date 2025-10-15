@@ -309,6 +309,8 @@ const Demo = () => {
                   </CardContent>
                 </Card>
 
+                {/* Placeholder for spacing consistency
+                
                 <Card className="bg-white/70 backdrop-blur border border-primary/15">
                   <CardContent className="p-8">
                     <h3 className="text-xl font-bold mb-4 text-primary">
@@ -336,6 +338,8 @@ const Demo = () => {
                     </div>
                   </CardContent>
                 </Card>
+                
+                */}
               </div>
             </div>
           </div>
@@ -359,7 +363,7 @@ const Demo = () => {
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
-                  <a href="mailto:support@welfordsystems.com">Talk to Sales</a>
+                  <a href="mailto:info@welfordsystems.com">Talk to Sales</a>
                 </Button>
               </div>
             </div>
