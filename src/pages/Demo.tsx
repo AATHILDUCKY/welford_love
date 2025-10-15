@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import HeroSection2 from "@/components/ui/herosection2";
 
 const API_BASE =
-  (import.meta as any)?.env?.VITE_API_BASE ?? "http://127.0.0.1:8000";
+  (import.meta as any)?.env?.VITE_API_BASE ?? "https://welfordsystems.com/api";
 
 type DemoCreate = {
   name: string;

@@ -13,7 +13,7 @@ type AuthContextValue = {
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
-const API_BASE = (import.meta as any)?.env?.VITE_API_BASE ?? "http://127.0.0.1:8000";
+const API_BASE = (import.meta as any)?.env?.VITE_API_BASE ?? "https://welfordsystems.com/api";
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [token, setToken] = useState<string | null>(() => localStorage.getItem("access_token"));

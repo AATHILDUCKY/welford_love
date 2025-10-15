@@ -37,7 +37,7 @@ import {
 } from "lucide-react";
 
 const API_BASE =
-  (import.meta as any)?.env?.VITE_API_BASE ?? "http://127.0.0.1:8000";
+  (import.meta as any)?.env?.VITE_API_BASE ?? "https://welfordsystems.com/api";
 
 type Job = {
   id: number;
