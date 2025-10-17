@@ -51,7 +51,7 @@ const HeroSection = () => {
                 </h1>
                 
                 <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                  Welford IAG is a unified, cloud-native identity and access governance
+                  Welford IAG is a unified identity and access governance
                   platform built to simplify access management across your enterprise.
                   Designed with Zero Trust principles at its core.
                 </p>
