@@ -29,12 +29,14 @@ import {
   MapPin,
   Briefcase,
   Clock,
-  ChevronDown,
-  ChevronUp,
+  ChevronRight,
   Upload,
   Loader2,
   Paperclip,
 } from "lucide-react";
+
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const API_BASE =
   (import.meta as any)?.env?.VITE_API_BASE ?? "https://welfordsystems.com/api";
@@ -44,7 +46,7 @@ type Job = {
   title: string;
   location?: string | null;
   employment_type?: string | null;
-  description?: string | null;
+  description?: string | null; // Markdown/HTML
   is_active: boolean;
   created_at: string; // ISO
 };
@@ -62,7 +64,7 @@ type ApplicationOut = {
 
 const LIMIT = 9;
 
-// --- utils ---
+// ---------- utils ----------
 function timeAgo(iso: string) {
   const d = new Date(iso);
   const diff = (Date.now() - d.getTime()) / 1000;
@@ -79,9 +81,155 @@ function stripHtml(html?: string | null) {
   return tmp.textContent || tmp.innerText || "";
 }
 
+/** Remove common Markdown syntax so previews don’t show raw `##`/`*` etc. */
+function stripMarkdown(text?: string | null) {
+  if (!text) return "";
+  let s = text;
+
+  // Remove code fences & inline code
+  s = s.replace(/```[\s\S]*?```/g, " ");
+  s = s.replace(/`[^`]*`/g, " ");
+
+  // Images ![alt](url) -> alt
+  s = s.replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1");
+
+  // Links [text](url) -> text
+  s = s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+
+  // Headings: remove leading hashes
+  s = s.replace(/^\s{0,3}#{1,6}\s+/gm, "");
+
+  // Blockquotes
+  s = s.replace(/^\s{0,3}>\s?/gm, "");
+
+  // Lists bullets & numbers
+  s = s.replace(/^\s*([-*+])\s+/gm, "");
+  s = s.replace(/^\s*\d+\.\s+/gm, "");
+
+  // Bold/italic/strike markers
+  s = s.replace(/(\*\*|__|\*|_|~~)/g, "");
+
+  // Horizontal rules
+  s = s.replace(/^\s*(-{3,}|\*{3,}|_{3,})\s*$/gm, " ");
+
+  // Tables pipes
+  s = s.replace(/^\|/gm, " ");
+  s = s.replace(/\|$/gm, " ");
+  s = s.replace(/\|/g, " ");
+
+  // Collapse whitespace
+  s = s.replace(/\s+/g, " ").trim();
+
+  return s;
+}
+
 const allowedCvExt = [".pdf", ".doc", ".docx"];
 
-// --- page ---
+// ---------- small UI bits ----------
+const Dot = () => <span className="mx-1 opacity-50">•</span>;
+
+function FieldLabel({
+  icon,
+  children,
+}: {
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <span className="inline-flex items-center gap-1.5 text-[13px] md:text-sm text-muted-foreground">
+      {icon}
+      {children}
+    </span>
+  );
+}
+
+/** Rich Markdown renderer for the Read More dialog with attractive headings */
+function MarkdownBody({ content }: { content: string }) {
+  return (
+    <div className="max-w-none">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          h1: ({ children }) => (
+            <h1 className="mt-2 mb-3 text-2xl md:text-3xl font-semibold tracking-tight">
+              {children}
+            </h1>
+          ),
+          h2: ({ children }) => (
+            <h2 className="mt-5 mb-2 text-xl md:text-2xl font-semibold tracking-tight">
+              {children}
+            </h2>
+          ),
+          h3: ({ children }) => (
+            <h3 className="mt-4 mb-2 text-lg md:text-xl font-semibold">
+              {children}
+            </h3>
+          ),
+          h4: ({ children }) => (
+            <h4 className="mt-3 mb-2 text-base md:text-lg font-semibold">
+              {children}
+            </h4>
+          ),
+          p: ({ children }) => (
+            <p className="my-2 leading-7 text-[15px] text-foreground/90">
+              {children}
+            </p>
+          ),
+          ul: ({ children }) => (
+            <ul className="my-3 list-disc pl-5 space-y-1">{children}</ul>
+          ),
+          ol: ({ children }) => (
+            <ol className="my-3 list-decimal pl-5 space-y-1">{children}</ol>
+          ),
+          li: ({ children }) => <li className="leading-7">{children}</li>,
+          a: ({ children, href }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:opacity-80"
+            >
+              {children}
+            </a>
+          ),
+          code: ({ children }) => (
+            <code className="rounded bg-muted px-1.5 py-0.5 text-[13px]">
+              {children}
+            </code>
+          ),
+          pre: ({ children }) => (
+            <pre className="my-3 overflow-x-auto rounded-xl bg-muted p-3">
+              {children}
+            </pre>
+          ),
+          blockquote: ({ children }) => (
+            <blockquote className="my-3 border-l-4 pl-4 text-foreground/90">
+              {children}
+            </blockquote>
+          ),
+          hr: () => <hr className="my-6 border-muted" />,
+          table: ({ children }) => (
+            <div className="my-3 overflow-x-auto rounded-lg border">
+              <table className="w-full text-sm">{children}</table>
+            </div>
+          ),
+          th: ({ children }) => (
+            <th className="bg-muted/60 px-3 py-2 text-left font-semibold">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="px-3 py-2 align-top">{children}</td>
+          ),
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  );
+}
+
+// ---------- page ----------
 const Career: React.FC = () => {
   const { toast } = useToast();
 
@@ -97,8 +245,8 @@ const Career: React.FC = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  // UI state
-  const [expanded, setExpanded] = useState<Record<number, boolean>>({});
+  // dialogs state
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [applyOpen, setApplyOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
@@ -110,7 +258,7 @@ const Career: React.FC = () => {
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // debounce q
+  // debounce search
   const [qDebounced, setQDebounced] = useState(q);
   const qTimer = useRef<number | null>(null);
   useEffect(() => {
@@ -160,16 +308,18 @@ const Career: React.FC = () => {
     }
   };
 
-  // initial + whenever filters change
   useEffect(() => {
     fetchJobs(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qDebounced, timeFilter, activeOnly]);
 
-  const onToggleExpand = (id: number) =>
-    setExpanded((s) => ({ ...s, [id]: !s[id] }));
+  // open dialogs
+  const openDetails = (job: Job) => {
+    setSelectedJob(job);
+    setDetailsOpen(true);
+  };
 
-  const openApply = (job: Job) => {
+  const openApplyFromCard = (job: Job) => {
     setSelectedJob(job);
     // reset form
     setName("");
@@ -180,6 +330,19 @@ const Career: React.FC = () => {
     setApplyOpen(true);
   };
 
+  const openApplyFromDetails = () => {
+    if (!selectedJob) return;
+    setDetailsOpen(false);
+    // reset form
+    setName("");
+    setEmail("");
+    setPhone("");
+    setCoverLetter("");
+    setCvFile(null);
+    setApplyOpen(true);
+  };
+
+  // file validate
   const onCvChange = (f: File | null) => {
     if (!f) {
       setCvFile(null);
@@ -206,10 +369,16 @@ const Career: React.FC = () => {
   };
 
   const canSubmit = useMemo(
-    () => !!selectedJob && name.trim() && /\S+@\S+\.\S+/.test(email) && !!cvFile && !submitting,
+    () =>
+      !!selectedJob &&
+      name.trim() &&
+      /\S+@\S+\.\S+/.test(email) &&
+      !!cvFile &&
+      !submitting,
     [selectedJob, name, email, cvFile, submitting]
   );
 
+  // submit
   const submitApplication = async () => {
     if (!selectedJob || !cvFile) return;
     setSubmitting(true);
@@ -233,7 +402,6 @@ const Career: React.FC = () => {
         throw new Error(msg || `Failed to apply (${res.status})`);
       }
       const _data: ApplicationOut = await res.json();
-
       toast({
         title: "Application submitted",
         description: `Thanks ${name}, we’ll be in touch.`,
@@ -258,8 +426,10 @@ const Career: React.FC = () => {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
-                <h1 className="text-3xl lg:text-4xl font-bold">Careers</h1>
-                <p className="text-muted-foreground">
+                <h1 className="text-3xl lg:text-4xl font-bold tracking-tight">
+                  Careers
+                </h1>
+                <p className="mt-1 text-muted-foreground">
                   Join us and help build secure, governed access for everyone.
                 </p>
               </div>
@@ -268,12 +438,16 @@ const Career: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
               <div className="md:col-span-2">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Search
+                    className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                    aria-hidden
+                  />
                   <Input
                     className="pl-9"
-                    placeholder="Search positions..."
+                    placeholder="Search positions…"
                     value={q}
                     onChange={(e) => setQ(e.target.value)}
+                    aria-label="Search positions"
                   />
                 </div>
               </div>
@@ -284,7 +458,7 @@ const Career: React.FC = () => {
                   setTimeFilter(v === "any" ? undefined : v)
                 }
               >
-                <SelectTrigger>
+                <SelectTrigger aria-label="Posted timeframe">
                   <SelectValue placeholder="Posted anytime" />
                 </SelectTrigger>
                 <SelectContent>
@@ -296,7 +470,7 @@ const Career: React.FC = () => {
                 </SelectContent>
               </Select>
 
-              <div className="flex items-center justify-between gap-2 rounded-md border px-3 py-2">
+              <div className="flex items-center justify-between gap-2 rounded-xl border px-3 py-2">
                 <div className="space-y-0">
                   <div className="text-sm font-medium leading-none">
                     Active only
@@ -320,7 +494,7 @@ const Career: React.FC = () => {
               {Array.from({ length: 6 }).map((_, i) => (
                 <Card
                   key={i}
-                  className="border bg-muted/20 animate-pulse h-48"
+                  className="rounded-2xl border bg-muted/20 animate-pulse h-48"
                 />
               ))}
             </div>
@@ -335,64 +509,74 @@ const Career: React.FC = () => {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {jobs.map((job) => {
-                  const isOpen = !!expanded[job.id];
-                  const desc = stripHtml(job.description);
+                  // Build a clean preview: strip HTML then Markdown, then slice
+                  const raw = job.description ?? "";
+                  const previewText = stripMarkdown(stripHtml(raw));
                   const short =
-                    desc.length > 220 ? desc.slice(0, 220) + "…" : desc;
+                    previewText.length > 240
+                      ? previewText.slice(0, 240) + "…"
+                      : previewText;
+
                   return (
                     <Card
                       key={job.id}
-                      className="relative transition-all hover:shadow-md"
+                      className="relative transition-all rounded-2xl border-muted/60 hover:-translate-y-0.5 hover:shadow-lg"
                     >
-                      <CardHeader className="pb-3">
-                        <div className="flex items-center justify-between gap-3">
-                          <CardTitle className="text-lg">{job.title}</CardTitle>
-                          <Badge
-                            variant="secondary"
-                            className="whitespace-nowrap"
-                          >
+                      <CardHeader className="pb-0">
+                        {/* Card H2 (job title) */}
+                        <div className="flex items-start justify-between gap-3">
+                          <CardTitle className="text-xl md:text-2xl leading-tight">
+                            {job.title}
+                          </CardTitle>
+                          <Badge variant="secondary" className="shrink-0">
                             {job.employment_type || "—"}
                           </Badge>
                         </div>
-                        <div className="mt-2 flex items-center gap-3 text-sm text-muted-foreground">
-                          <span className="inline-flex items-center gap-1">
-                            <MapPin className="h-4 w-4" />
+
+                        {/* Quick facts */}
+                        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-muted-foreground">
+                          <FieldLabel icon={<MapPin className="h-4 w-4" />}>
                             {job.location || "Remote / Flexible"}
-                          </span>
-                          <span className="inline-flex items-center gap-1">
-                            <Briefcase className="h-4 w-4" />
+                          </FieldLabel>
+                          <Dot />
+                          <FieldLabel icon={<Briefcase className="h-4 w-4" />}>
                             {job.is_active ? "Open" : "Closed"}
-                          </span>
-                          <span className="inline-flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
+                          </FieldLabel>
+                          <Dot />
+                          <FieldLabel icon={<Clock className="h-4 w-4" />}>
                             {timeAgo(job.created_at)}
-                          </span>
+                          </FieldLabel>
                         </div>
                       </CardHeader>
-                      <CardContent className="pt-0 space-y-4">
-                        <p className="text-sm text-muted-foreground">
-                          {isOpen ? desc : short}
+
+                      <CardContent className="pt-5">
+                        {/* Clean preview (no ## or MD symbols) */}
+                        <p className="text-[15px] leading-6 text-muted-foreground mb-6">
+                          {short || "No description provided."}
                         </p>
 
+                        {/* Actions */}
                         <div className="flex items-center justify-between">
                           <Button
-                            variant="ghost"
+                            variant="link"
                             className="px-0"
-                            onClick={() => onToggleExpand(job.id)}
+                            onClick={() => openDetails(job)}
+                            aria-label={`Read more about ${job.title}`}
                           >
-                            {isOpen ? (
-                              <>
-                                Show less <ChevronUp className="ml-1 h-4 w-4" />
-                              </>
-                            ) : (
-                              <>
-                                Read more{" "}
-                                <ChevronDown className="ml-1 h-4 w-4" />
-                              </>
-                            )}
+                            Read more <ChevronRight className="ml-1 h-4 w-4" />
                           </Button>
 
-                          <Button onClick={() => openApply(job)}>Apply</Button>
+                          <Button
+                            onClick={() => openApplyFromCard(job)}
+                            disabled={!job.is_active}
+                            title={
+                              job.is_active
+                                ? "Apply for this job"
+                                : "Applications are closed"
+                            }
+                          >
+                            {job.is_active ? "Apply" : "Closed"}
+                          </Button>
                         </div>
                       </CardContent>
                     </Card>
@@ -401,7 +585,7 @@ const Career: React.FC = () => {
               </div>
 
               {hasMore && (
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-center mt-10">
                   <Button
                     variant="outline"
                     disabled={loadingMore}
@@ -423,18 +607,71 @@ const Career: React.FC = () => {
         </div>
       </section>
 
+      {/* Details Dialog (Read more) */}
+      <Dialog open={detailsOpen} onOpenChange={setDetailsOpen}>
+        <DialogContent className="max-w-2xl md:max-w-3xl">
+          <DialogHeader className="mb-1">
+            {/* Dialog H1 */}
+            <DialogTitle className="text-2xl md:text-3xl leading-[1.2]">
+              {selectedJob?.title}
+            </DialogTitle>
+            <DialogDescription>
+              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-muted-foreground">
+                <FieldLabel icon={<MapPin className="h-4 w-4" />}>
+                  {selectedJob?.location || "Remote / Flexible"}
+                </FieldLabel>
+                <Dot />
+                <FieldLabel icon={<Briefcase className="h-4 w-4" />}>
+                  {selectedJob?.employment_type || "—"}
+                </FieldLabel>
+                <Dot />
+                <FieldLabel icon={<Clock className="h-4 w-4" />}>
+                  {selectedJob ? timeAgo(selectedJob.created_at) : ""}
+                </FieldLabel>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+
+          {/* Markdown body with attractive multiple headings & elements */}
+          <div className="max-h-[60vh] overflow-y-auto pr-1">
+            {selectedJob?.description ? (
+              <MarkdownBody content={selectedJob.description} />
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                No description provided.
+              </p>
+            )}
+          </div>
+
+          <DialogFooter className="mt-3">
+            <Button variant="ghost" onClick={() => setDetailsOpen(false)}>
+              Close
+            </Button>
+            <Button
+              onClick={openApplyFromDetails}
+              disabled={!selectedJob?.is_active}
+            >
+              {selectedJob?.is_active ? "Apply" : "Closed"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Apply Dialog */}
       <Dialog open={applyOpen} onOpenChange={setApplyOpen}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>Apply for {selectedJob?.title}</DialogTitle>
+            {/* Dialog H2 */}
+            <DialogTitle className="text-xl md:text-2xl">
+              Apply for {selectedJob?.title || "this role"}
+            </DialogTitle>
             <DialogDescription>
               Upload your CV (PDF or Word) and share your details.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 gap-3">
+          <div className="space-y-5">
+            <div className="grid grid-cols-1 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="app-name">Full name</Label>
                 <Input
