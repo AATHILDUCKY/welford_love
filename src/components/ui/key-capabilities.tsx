@@ -158,7 +158,7 @@ const KeyCapabilities = () => {
       className="relative py-16 sm:py-20 bg-[#f8fafc] overflow-hidden"
       aria-labelledby="key-capabilities-heading"
     >
-      {/* --- Background: clean, non‑gradient, responsive SVG dot grid --- */}
+      {/* --- Background: clean, non-gradient, responsive SVG dot grid --- */}
       <div aria-hidden className="absolute inset-0">
         <svg
           className="w-full h-full opacity-50"
@@ -209,7 +209,7 @@ const KeyCapabilities = () => {
                 transition={{ duration: 0.5 }}
                 className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl ring-1 ring-slate-200/60 bg-white"
               >
-                {/* subtle sheen (not a gradient background; single overlay) */}
+                {/* subtle sheen */}
                 <div className="absolute inset-0 pointer-events-none bg-white/5" />
                 <motion.img
                   src={activeItem.image}
@@ -269,9 +269,7 @@ const KeyCapabilities = () => {
                       title="Toggle auto rotation"
                     >
                       <span
-                        className={`w-2.5 h-2.5 rounded-full mr-2 ${
-                          isAutoPlaying ? "bg-[#032955]" : "bg-gray-400"
-                        }`}
+                        className={`w-2.5 h-2.5 rounded-full mr-2 ${isAutoPlaying ? "bg-[#032955]" : "bg-gray-400"}`}
                       />
                       {isAutoPlaying ? "Pause" : "Play"} auto
                     </button>
@@ -281,8 +279,8 @@ const KeyCapabilities = () => {
             </div>
           </div>
 
-          {/* Right: nav list */}
-          <div className="lg:order-2">
+          {/* Right: nav list (HIDDEN on mobile) */}
+          <div className="hidden lg:block lg:order-2">
             <div className="relative">
               {/* Items above */}
               <div className="space-y-2.5 sm:space-y-3 mb-3 sm:mb-4">
@@ -389,8 +387,8 @@ const KeyCapabilities = () => {
           </div>
         </div>
 
-        {/* Mobile: quick access list below image for better reach */}
-        <div className="mt-10 lg:hidden">
+        {/* Mobile: quick access list BELOW image — now hidden as well */}
+        <div className="hidden">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
             {features.map((f, i) => (
               <button
