@@ -34,25 +34,6 @@ const TopBar = () => {
 
           {/* Social Media Icons */}
           <div className="flex items-center gap-3 sm:gap-4">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/60 rounded-md"
-              aria-label="Twitter"
-            >
-              <Twitter className="w-4 h-4" />
-            </a>
-
-            <a
-              href="https://www.facebook.com/share/164hve3zBS"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/60 rounded-md"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-4 h-4" />
-            </a>
 
             <a
               href="https://www.linkedin.com/company/welfordsystems"
