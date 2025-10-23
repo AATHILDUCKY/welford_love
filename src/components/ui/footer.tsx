@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center">
               <img
-                src="https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/Blue%20and%20White%20Modern%20Company%20Logo%20(6).png"
+                src="https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/Blue%20and%20White%20Modern%20Company%20Logo.png"
                 alt="Welford Systems"
                 className="h-16 sm:h-20 object-contain"
                 loading="lazy"
