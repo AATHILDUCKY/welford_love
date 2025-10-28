@@ -38,6 +38,9 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+// ✅ NEW: checkbox import
+import { Checkbox } from "@/components/ui/checkbox";
+
 const API_BASE =
   (import.meta as any)?.env?.VITE_API_BASE ?? "https://welfordsystems.com/api";
 
@@ -258,6 +261,9 @@ const Career: React.FC = () => {
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
+  // ✅ NEW: consent checkbox state
+  const [consent, setConsent] = useState(false);
+
   // debounce search
   const [qDebounced, setQDebounced] = useState(q);
   const qTimer = useRef<number | null>(null);
@@ -327,6 +333,7 @@ const Career: React.FC = () => {
     setPhone("");
     setCoverLetter("");
     setCvFile(null);
+    setConsent(false); // ✅ reset consent each time
     setApplyOpen(true);
   };
 
@@ -339,6 +346,7 @@ const Career: React.FC = () => {
     setPhone("");
     setCoverLetter("");
     setCvFile(null);
+    setConsent(false); // ✅ reset consent each time
     setApplyOpen(true);
   };
 
@@ -380,6 +388,17 @@ const Career: React.FC = () => {
 
   // submit
   const submitApplication = async () => {
+    // ✅ Enforce consent with a toast if missing
+    if (!consent) {
+      toast({
+        title: "Please confirm data processing",
+        description:
+          "Tick the checkbox to allow Welford Systems to process your personal data for reviewing your application.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!selectedJob || !cvFile) return;
     setSubmitting(true);
     try {
@@ -699,7 +718,7 @@ const Career: React.FC = () => {
                   id="app-phone"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+94 7X XXX XXXX"
+                  placeholder="+44 7X XXX XXXX"
                 />
               </div>
 
@@ -741,6 +760,20 @@ const Career: React.FC = () => {
                     {cvFile.name} • {(cvFile.size / (1024 * 1024)).toFixed(2)} MB
                   </div>
                 )}
+              </div>
+
+              {/* ✅ NEW: Consent checkbox */}
+              <div className="flex items-start gap-3 rounded-lg border p-3">
+                <Checkbox
+                  id="app-consent"
+                  checked={consent}
+                  onCheckedChange={(v) => setConsent(Boolean(v))}
+                  aria-label="Consent to process personal data"
+                />
+                <Label htmlFor="app-consent" className="text-sm leading-6">
+                  I agree that Welford Systems may process my personal data for
+                  the purpose of reviewing my application.
+                </Label>
               </div>
             </div>
           </div>
