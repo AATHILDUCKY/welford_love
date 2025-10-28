@@ -70,32 +70,32 @@ const IdentityAccessManagement = () => {
         />
         
           <HeroSection2
-            badge="Welford Systems — IAM"
-            title= "Secure Every Identity Govern Every Access."
-            
-            subtitle="At Welford Systems, we help organizations transform their cybersecurity posture through advanced Identity & Access Management (IAM) solutions that put security, compliance, and scalability at the core of your digital operations."
-            bullets={[
-              "Zero Trust-aligned controls",
-              "Policy-based automation",
-              "Human & machine identity coverage",
-            ]}
-            primaryCta={{
-              label: "Get Started",
-              href: "/demo",
-              icon: <Calendar className="mr-2 h-4 w-4" />,
-            }}
-            secondaryCta={{
-              label: "Contact Sales",
-              href: "/contact",
-              icon: <Phone className="mr-2 h-4 w-4" />,
-            }}
-            image={{
-              src: "https://plus.unsplash.com/premium_photo-1661778490723-371305b4fb06?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-              alt: "Live product walkthrough preview",
-            }}
-            imageBadgeText="30–45 min session"
-            id="demo-hero"
-          />
+  badge="Welford Systems — IAG"
+  title="Identity & Access Governance — Unify, Automate, and Secure Every Identity"
+  subtitle="Empower your enterprise to enforce Zero Trust, eliminate standing access, and automate compliance across hybrid and multi-cloud environments."
+  bullets={[
+    "Unified Identity Governance",
+    "Zero Trust enforcement",
+    "Automated compliance workflows",
+  ]}
+  primaryCta={{
+    label: "Request a Demo",
+    href: "/demo",
+    icon: <Calendar className="mr-2 h-4 w-4" />,
+  }}
+  secondaryCta={{
+    label: "Explore Welford IAG",
+    href: "/platform",
+    icon: <Phone className="mr-2 h-4 w-4" />,
+  }}
+  image={{
+    src: "https://plus.unsplash.com/premium_photo-1661778490723-371305b4fb06?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "Identity & Access Governance product overview",
+  }}
+  imageBadgeText="30–45 min session"
+  id="demo-hero"
+/>
+
         
       </section>
 

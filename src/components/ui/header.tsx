@@ -204,7 +204,7 @@ const Header = () => {
 
             {/* About Us */}
             <Link
-              to="/company/about"
+              to="/about"
               className={cn(
                 "inline-flex h-11 items-center rounded-xl px-4 text-[15px] font-semibold",
                 NAV_HOVER_BG,
@@ -218,7 +218,7 @@ const Header = () => {
 
             {/* Careers */}
             <Link
-              to="/company/careers"
+              to="/careers"
               className={cn(
                 "inline-flex h-11 items-center rounded-xl px-4 text-[15px] font-semibold",
                 NAV_HOVER_BG,

@@ -6,6 +6,8 @@ import BenefitsGrid from "@/components/ui/benefits-grid";
 import CtaSection from "@/components/ui/cta-section";
 import CompanyOverviewCentered from "@/components/ui/companyoverview";
 
+import VisionValuesSection from "@/components/ui/VisionValuesSection";
+
 //components
 import IntegrationEcosystem from "@/components/ui/ScrollItems";
 import HeroSection from '@/components/ui/hero-section';
@@ -131,22 +133,17 @@ const Index = () => {
       <HeroSection />
 
       {/* Product Overview */}
-      <CompanyOverviewCentered
-        id="overview"
-        title="All identities. One converged,"
-        highlight="AI-powered platform"
-        description="Welford IAG provides centralized, intelligent access governance across the enterprise."
-        imageSrc="/src/assets/welfordw33.webp"
-        imageAlt="Welford IAG platform overview"
-        brandColor="#032955"
-        accent="gradient"
-      />
+      <CompanyOverviewCentered />
+
 
       {/* Key Capabilities */}
       <KeyCapabilities  />
 
-      {/* Why Choose Welford IAG */}
+      {/* Why Choose Welford IAG 
       <BenefitsGrid title="Why Choose Welford IAG?" benefits={benefits} brandColor="#032955" />
+      */}
+
+      <VisionValuesSection id="vision-values" brandColor="#032955" />
 
       {/* Integration Ecosystem */}
       < IntegrationEcosystem />

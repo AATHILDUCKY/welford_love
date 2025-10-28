@@ -39,15 +39,12 @@ const KeyCapabilities = () => {
   const DURATION = 4500;
 
   const features: Feature[] = [
-    { icon: Settings, title: "Autonomous Access Provisioning", description: "Eliminate tickets and administrator involvement with fully automated access provisioning and revocation based on time-bound entitlements.", image: aap },
-    { icon: Clock, title: "Universal Just-in-Time (JIT) Access", description: "Grant access only when it's needed—and automatically revoke it when it's no longer required. Every access is governed like privileged access.", image: jit },
-    { icon: Eye, title: "Real-Time Visibility and Control", description: "System owners and approvers gain instant visibility into who has what access across systems or by user—no more waiting for audit exports or admin reports.", image: rtv },
-    { icon: Database, title: "Granular Entitlement Management", description: "Define and manage access at a fine-grained level for Linux, Microsoft 365, Azure, AWS, GCP, and enterprise databases, with support for session-based controls and no standing credentials.", image: gem },
-    { icon: Brain, title: "Intelligent Recommendations", description: "Use AI-powered insights to detect entitlement risks, suggest access improvements, and continuously strengthen your governance posture.", image: ir },
-    { icon: Users, title: "Non-Personal Technical Accounts (NPTA)", description: "Securely manage service principals, application identities, and schema-based technical accounts across databases and platforms.", image: npta },
+    { icon: Clock, title: "100% Just-in-Time (JIT) Access", description: "grant and revoke entitlements dynamically, only when required", image: jit },
+    { icon: Settings, title: "Autonomous Provisioning", description: "— replace manual tickets and scripts with policy-driven automation", image: aap },
+    { icon: Key, title: "Password-Free Linux Access", description: "Ephemeral, credential-less sessions for complete least-privilege control.", image: pmkv },
+    { icon: Users, title: "Multi-Cloud Governance", description: "Unified oversight for Azure, AWS, GCP, ADDS, and Entra ID", image: npta },
+    { icon: Brain, title: "Audit-Ready Compliance Evidence", description: "real-time dashboards and forensic logs aligned with ISO 27001 & SOC 2", image: ir },
     { icon: Key, title: "Identity Lifecycle Automation", description: "Automate onboarding, offboarding, and role changes for joiners, movers, and leavers using policy-based workflows.", image: ila },
-    { icon: Shield, title: "Single Sign-On (SSO) & MFA", description: "Enable seamless authentication and strong security through integrated SSO and multi-factor authentication.", image: ss0 },
-    { icon: Key, title: "Password Management & Key Vault", description: "Securely store and manage credentials, rotate passwords, and integrate with Key Vaults for secure handling of sensitive assets.", image: pmkv },
   ];
 
   const total = features.length;
@@ -191,10 +188,10 @@ const KeyCapabilities = () => {
             id="key-capabilities-heading"
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#032955]"
           >
-            Key Capabilities
+            Our Solution: Welford Identity & Access Governance (Welford IAG)
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mt-2 sm:mt-3 text-sm sm:text-base">
-            Discover our powerful features designed to streamline your access management and security processes
+            A Zero Trust, autonomous access governance platform that centralizes, automates, and secures access across your entire digital ecosystem.
           </p>
         </div>
 

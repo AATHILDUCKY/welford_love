@@ -98,12 +98,12 @@ const Navigation = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-48">
                 <DropdownMenuItem asChild>
-                  <Link to="/company/about" className="w-full">
+                  <Link to="/about" className="w-full">
                     About Us
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/company/careers" className="w-full">
+                  <Link to="/careers" className="w-full">
                     Careers
                   </Link>
                 </DropdownMenuItem>

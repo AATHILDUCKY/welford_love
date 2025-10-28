@@ -81,7 +81,7 @@ const HeroSection = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild style={{ backgroundColor: "#032955", color: "white" }}>
                   <Link to="/demo" className="flex items-center">
-                    Get Started
+                    Request a Demo
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
@@ -94,7 +94,7 @@ const HeroSection = () => {
                 >
                   <Link to="/resources/videos-demos" className="flex items-center">
                     <Play className="mr-2 w-4 h-4" />
-                    Watch Demo
+                    Explore WelfordIAG
                   </Link>
                 </Button>
               </div>
