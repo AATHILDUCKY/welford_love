@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import CtaSection from "@/components/ui/cta-section";
 import {
   Shield,
   Users,
@@ -11,6 +12,15 @@ import {
   ArrowRight,
   Calendar,
   Phone,
+  Clock,
+  Workflow,
+  KeyRound,
+  FileCheck2,
+  RefreshCw,
+  Cloud,
+  ShieldCheck,
+  Zap,
+  Users2
 } from "lucide-react";
 import Layout from "@/components/layout/layout";
 import HeroSection2 from "@/components/ui/herosection2";
@@ -97,350 +107,1225 @@ const IdentityAccessManagement = () => {
 />
       </section>
 
-
-
-
-<section className="relative overflow-hidden py-20 sm:py-28 bg-gradient-to-br from-slate-50 to-blue-50/30">
-  {/* Simplified Background */}
+<section className="relative overflow-hidden py-20 sm:py-24 bg-transparent w-[90%] mx-auto">
+  {/* Ambient brand glows (non-blocking) */}
   <div aria-hidden className="pointer-events-none absolute inset-0">
-    {/* Soft gradient overlays */}
-    <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-blue-50/20 to-transparent" />
-    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-blue-50/10 to-transparent" />
+    <div
+      className="absolute -top-28 left-1/2 -translate-x-1/2 h-[520px] w-[520px] rounded-full blur-[160px] opacity-25"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #0b4aa8 0%, transparent 70%)" }}
+    />
+    <div
+      className="absolute bottom-[-160px] right-[-120px] h-[460px] w-[460px] rounded-full blur-[160px] opacity-20"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #032955 0%, transparent 70%)" }}
+    />
   </div>
 
   <div className="container mx-auto px-4 relative z-10">
     <div className="mx-auto max-w-6xl">
-      {/* Centered Header Section */}
+      {/* Header */}
       <div className="text-center mb-16">
-        {/* Centered Kicker */}
+        {/* Kicker */}
         <div className="mb-6 flex justify-center">
           <span
-            className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium tracking-wide bg-white/90 backdrop-blur-xl shadow-sm"
-            style={{ 
-              borderColor: "rgba(3,41,85,0.15)", 
+            className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-xl shadow-sm"
+            style={{
+              borderColor: "rgba(3,41,85,0.15)",
               color: "#032955",
-              background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)"
+              background: "rgba(255,255,255,0.65)",
             }}
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-600 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-700" />
+              <span
+                className="animate-ping absolute inline-flex h-full w-full rounded-full"
+                style={{ background: "#0b4aa8", opacity: 0.75 }}
+              />
+              <span
+                className="relative inline-flex rounded-full h-2 w-2"
+                style={{ background: "#032955" }}
+              />
             </span>
             The Challenge
           </span>
         </div>
 
-        {/* Centered Title */}
-        <h2 className="font-bold leading-tight text-4xl sm:text-5xl lg:text-6xl mb-6">
+        {/* Title */}
+        <h2 className="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight mb-4">
           <span className="text-slate-900">
             Identity Risk Is{" "}
-            <span className="relative inline-block bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+            <span
+              className="relative inline-block bg-clip-text text-transparent"
+              style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+            >
               Business Risk
-              <span
-                className="pointer-events-none absolute -bottom-2 left-0 right-0 h-2 rounded-full opacity-30"
-                style={{
-                  background: "linear-gradient(90deg, #0b4aa8 0%, #032955 50%, transparent 100%)",
-                }}
-              />
             </span>
           </span>
         </h2>
 
-        {/* Centered Intro */}
-        <div className="max-w-3xl mx-auto">
-          <p className="text-lg sm:text-xl leading-relaxed text-slate-700 font-light mb-8">
-            Identity is the new perimeter — unmanaged access is the weakest link. With thousands of human and 
-            machine identities across on-prem, SaaS, and multi-cloud, standing privileges and manual provisioning 
-            can't keep pace.
+        {/* Accent underline */}
+        <div
+          className="mx-auto h-1 w-28 rounded-full"
+          style={{ background: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
+        />
+
+        {/* Intro */}
+        <div className="mx-auto w-[92vw] max-w-[92vw] sm:max-w-4xl">
+          <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-700 font-light">
+            In the modern enterprise, identity is the new perimeter — and unmanaged access is the weakest link.
+            Organizations face escalating complexity as they manage thousands of human and machine identities
+            across on-premises, SaaS, and multi-cloud environments. Traditional IAM models, built on standing
+            privileges and manual provisioning, can no longer keep pace.
           </p>
         </div>
       </div>
 
-      {/* Challenges Grid - All cards same size */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Privilege Sprawl */}
-        <div
-          className="group relative rounded-3xl p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
+      {/* Challenges Grid (modern tiles) */}
+      {/* Requires: import { Shield, Settings, Eye, FileCheck, Users } from "lucide-react"; */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 auto-rows-fr">
+        {/* Tile helper styles */}
+        {/* Each tile: larger icon ring, subtle hover lift, internal focus ring, balanced paddings */}
+        {/* 1. Privilege Sprawl */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 min-h-[240px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_50px_rgba(3,41,85,0.10)] focus-within:-translate-y-1"
           style={{
-            background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)`,
-            border: '1px solid rgba(3,41,85,0.1)',
-            boxShadow: '0 8px 32px rgba(2, 8, 20, 0.08), 0 1px 3px rgba(2, 8, 20, 0.04)'
+            background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(246,249,255,0.92) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
           }}
+          tabIndex={0}
         >
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/5 to-blue-600/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center gap-4 mb-4">
-              <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
-                  border: '1px solid rgba(3,41,85,0.1)',
-                  boxShadow: '0 4px 12px rgba(2, 8, 20, 0.05)'
-                }}
-              >
-                <Shield className="h-6 w-6 text-blue-700" />
-              </div>
-              <div className="text-lg font-semibold text-slate-800">Privilege Sprawl</div>
+          <div className="flex items-start gap-4">
+            <div
+              className="relative grid place-items-center h-14 w-14 shrink-0 rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              <Shield className="h-7 w-7" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
-            <p className="text-sm leading-relaxed text-slate-600 font-light flex-grow">
-              Excessive permissions expand the attack surface across all environments and platforms.
-            </p>
+            <h3 className="text-xl font-semibold text-slate-900">Privilege Sprawl</h3>
           </div>
-        </div>
+          <p className="mt-4 text-base leading-relaxed text-slate-700">
+            Excessive permissions expand the attack surface across all environments and platforms.
+          </p>
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.16)" }}
+          />
+        </article>
 
-        {/* Manual Provisioning */}
-        <div
-          className="group relative rounded-3xl p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
+        {/* 2. Manual Provisioning */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 min-h-[240px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_50px_rgba(3,41,85,0.10)] focus-within:-translate-y-1"
           style={{
-            background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)`,
-            border: '1px solid rgba(3,41,85,0.1)',
-            boxShadow: '0 8px 32px rgba(2, 8, 20, 0.08), 0 1px 3px rgba(2, 8, 20, 0.04)'
+            background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(246,249,255,0.92) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
           }}
+          tabIndex={0}
         >
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-600/5 to-blue-700/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center gap-4 mb-4">
-              <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
-                  border: '1px solid rgba(3,41,85,0.1)',
-                  boxShadow: '0 4px 12px rgba(2, 8, 20, 0.05)'
-                }}
-              >
-                <Settings className="h-6 w-6 text-blue-700" />
-              </div>
-              <div className="text-lg font-semibold text-slate-800">Manual Provisioning</div>
+          <div className="flex items-start gap-4">
+            <div
+              className="relative grid place-items-center h-14 w-14 shrink-0 rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              <Settings className="h-7 w-7" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
-            <p className="text-sm leading-relaxed text-slate-600 font-light flex-grow">
-              Human workflows add delay and inconsistency to access management processes.
-            </p>
+            <h3 className="text-xl font-semibold text-slate-900">Manual Provisioning</h3>
           </div>
-        </div>
+          <p className="mt-4 text-base leading-relaxed text-slate-700">
+            Human workflows add delay and inconsistency to access management processes.
+          </p>
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.16)" }}
+          />
+        </article>
 
-        {/* Limited Visibility */}
-        <div
-          className="group relative rounded-3xl p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
+        {/* 3. Limited Visibility */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 min-h-[240px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_50px_rgba(3,41,85,0.10)] focus-within:-translate-y-1"
           style={{
-            background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)`,
-            border: '1px solid rgba(3,41,85,0.1)',
-            boxShadow: '0 8px 32px rgba(2, 8, 20, 0.08), 0 1px 3px rgba(2, 8, 20, 0.04)'
+            background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(246,249,255,0.92) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
           }}
+          tabIndex={0}
         >
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-700/5 to-blue-800/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center gap-4 mb-4">
-              <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
-                  border: '1px solid rgba(3,41,85,0.1)',
-                  boxShadow: '0 4px 12px rgba(2, 8, 20, 0.05)'
-                }}
-              >
-                <Eye className="h-6 w-6 text-blue-700" />
-              </div>
-              <div className="text-lg font-semibold text-slate-800">Limited Visibility</div>
+          <div className="flex items-start gap-4">
+            <div
+              className="relative grid place-items-center h-14 w-14 shrink-0 rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              <Eye className="h-7 w-7" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
-            <p className="text-sm leading-relaxed text-slate-600 font-light flex-grow">
-              No real-time insight into entitlements and access patterns across systems.
-            </p>
+            <h3 className="text-xl font-semibold text-slate-900">Limited Visibility</h3>
           </div>
-        </div>
+          <p className="mt-4 text-base leading-relaxed text-slate-700">
+            No real-time insight into entitlements and access patterns across systems.
+          </p>
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.16)" }}
+          />
+        </article>
 
-        {/* Compliance Pressure */}
-        <div
-          className="group relative rounded-3xl p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
+        {/* 4. Compliance Pressure */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 min-h-[240px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_50px_rgba(3,41,85,0.10)] focus-within:-translate-y-1"
           style={{
-            background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)`,
-            border: '1px solid rgba(3,41,85,0.1)',
-            boxShadow: '0 8px 32px rgba(2, 8, 20, 0.08), 0 1px 3px rgba(2, 8, 20, 0.04)'
+            background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(246,249,255,0.92) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
           }}
+          tabIndex={0}
         >
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-800/5 to-blue-900/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center gap-4 mb-4">
-              <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
-                  border: '1px solid rgba(3,41,85,0.1)',
-                  boxShadow: '0 4px 12px rgba(2, 8, 20, 0.05)'
-                }}
-              >
-                <FileCheck className="h-6 w-6 text-blue-700" />
-              </div>
-              <div className="text-lg font-semibold text-slate-800">Compliance Pressure</div>
+          <div className="flex items-start gap-4">
+            <div
+              className="relative grid place-items-center h-14 w-14 shrink-0 rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              <FileCheck className="h-7 w-7" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
-            <p className="text-sm leading-relaxed text-slate-600 font-light flex-grow">
-              Proving ISO 27001, SOC 2, GDPR controls is costly and time-consuming.
-            </p>
+            <h3 className="text-xl font-semibold text-slate-900">Compliance Pressure</h3>
           </div>
-        </div>
+          <p className="mt-4 text-base leading-relaxed text-slate-700">
+            Proving ISO 27001, GDPR controls is costly and time-consuming.
+          </p>
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.16)" }}
+          />
+        </article>
 
-        {/* Hybrid Complexity - Now same size as others but spans 2 columns */}
-        <div
-          className="group relative rounded-3xl p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
+        {/* 5. Hybrid Complexity */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 min-h-[240px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_50px_rgba(3,41,85,0.10)] focus-within:-translate-y-1"
           style={{
-            background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)`,
-            border: '1px solid rgba(3,41,85,0.1)',
-            boxShadow: '0 8px 32px rgba(2, 8, 20, 0.08), 0 1px 3px rgba(2, 8, 20, 0.04)'
+            background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(246,249,255,0.92) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
           }}
+          tabIndex={0}
         >
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-900/5 to-indigo-900/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center gap-4 mb-4">
-              <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
-                  border: '1px solid rgba(3,41,85,0.1)',
-                  boxShadow: '0 4px 12px rgba(2, 8, 20, 0.05)'
-                }}
-              >
-                <Users className="h-6 w-6 text-blue-700" />
-              </div>
-              <div className="text-lg font-semibold text-slate-800">Hybrid Complexity</div>
+          <div className="flex items-start gap-4">
+            <div
+              className="relative grid place-items-center h-14 w-14 shrink-0 rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              <Users className="h-7 w-7" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
-            <p className="text-sm leading-relaxed text-slate-600 font-light flex-grow">
-              Azure, AWS, Entra ID, ADDS, and SaaS sprawl create governance blind spots and security gaps.
-            </p>
+            <h3 className="text-xl font-semibold text-slate-900">Hybrid Complexity</h3>
           </div>
-        </div>
+          <p className="mt-4 text-base leading-relaxed text-slate-700">
+            Azure, AWS, Entra ID, ADDS, and SaaS sprawl create governance blind spots and security gaps.
+          </p>
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.16)" }}
+          />
+        </article>
 
-
+        {/* Grid balance spacer (keeps rhythm on some viewports) */}
+        <div className="hidden lg:block" />
       </div>
     </div>
-  </div>
 
-  {/* Section separators */}
-  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
-  <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
+    {/* Footnote / Emphasis block */}
+    <p
+      className="mt-12 text-base sm:text-lg leading-relaxed text-center font-medium max-w-3xl mx-auto px-5"
+      style={{
+        color: "#032955",
+        background: "linear-gradient(90deg, rgba(11,74,168,0.08) 0%, rgba(3,41,85,0.08) 100%)",
+        borderRadius: "1rem",
+        padding: "1.25rem",
+        boxShadow: "0 6px 28px rgba(3,41,85,0.08)",
+      }}
+    >
+      Identity governance is no longer just about{" "}
+      <span
+        className="font-semibold text-transparent bg-clip-text"
+        style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+      >
+        access
+      </span>
+      — it’s about{" "}
+      <span
+        className="font-semibold text-transparent bg-clip-text"
+        style={{ backgroundImage: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
+      >
+        governing risk
+      </span>
+      ,{" "}
+      <span
+        className="font-semibold text-transparent bg-clip-text"
+        style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+      >
+        proving control
+      </span>
+      , and{" "}
+      <span
+        className="font-semibold text-transparent bg-clip-text"
+        style={{ backgroundImage: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
+      >
+        enforcing trust
+      </span>
+      . By replacing{" "}
+      <span
+        className="font-semibold text-transparent bg-clip-text"
+        style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+      >
+        manual control
+      </span>{" "}
+      with{" "}
+      <span
+        className="font-semibold text-transparent bg-clip-text"
+        style={{ backgroundImage: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
+      >
+        continuous governance
+      </span>
+      , Welford IAG converts compliance from a reactive burden into a{" "}
+      <span
+        className="font-semibold text-transparent bg-clip-text"
+        style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+      >
+        strategic differentiator
+      </span>
+      .
+    </p>
+  </div>
 </section>
 
 
 
-      {/* Our IAM & IAG Solutions */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ color: "#032955" }}>
-              Our IAM & IAG Solutions
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutions.map((solution, index) => (
-              <Card
-                key={index}
-                className="transition-all hover:-translate-y-0.5 hover:shadow-md"
-                style={{ borderColor: "rgba(3,41,85,0.18)" }}
-              >
-                <CardContent className="p-8">
-                  <solution.icon
-                    className="w-12 h-12 mb-4"
-                    style={{ color: "#032955" }}
-                  />
-                  <h3 className="font-semibold text-xl mb-3" style={{ color: "#032955" }}>
-                    {solution.title}
-                  </h3>
-                  <p className="text-muted-foreground">{solution.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+<section className="relative overflow-hidden py-20 sm:py-24 bg-transparent w-[90%] mx-auto">
+  {/* Brand glows */}
+  <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div
+      className="absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[520px] rounded-full blur-[160px] opacity-25"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #0b4aa8 0%, transparent 70%)" }}
+    />
+    <div
+      className="absolute bottom-[-160px] right-[-120px] h-[420px] w-[420px] rounded-full blur-[160px] opacity-20"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #032955 0%, transparent 70%)" }}
+    />
+  </div>
 
-      {/* Welford IAG Flagship */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ color: "#032955" }}>
-              Welford IAG: Our Flagship IAM Solution
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              A next-gen solution that centralizes identity management, eliminates standing access,
-              and enforces Zero Trust.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                n: 1,
-                t: "Unified Governance",
-                d: "Centralize identity management across all systems and environments",
-              },
-              {
-                n: 2,
-                t: "Automated Lifecycle",
-                d: "Streamline provisioning and deprovisioning processes",
-              },
-              {
-                n: 3,
-                t: "Identity Support",
-                d: "Manage both human and technical identities effectively",
-              },
-              {
-                n: 4,
-                t: "Compliance & Audit",
-                d: "Maintain full visibility and auditability across all access",
-              },
-            ].map((item, i) => (
-              <Card
-                key={i}
-                className="transition-all hover:-translate-y-0.5 hover:shadow-md"
-                style={{ borderColor: "rgba(3,41,85,0.18)" }}
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-start space-x-4">
-                    <div
-                      className="w-8 h-8 text-white rounded-full flex items-center justify-center font-bold"
-                      style={{ backgroundColor: "#032955" }}
-                    >
-                      {item.n}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-xl mb-2" style={{ color: "#032955" }}>
-                        {item.t}
-                      </h3>
-                      <p className="text-muted-foreground">{item.d}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section (no gradient buttons; brand accents via #032955) */}
-      <section
-        className="py-20"
-        style={{ backgroundColor: "rgba(3,41,85,0.06)" }}
+  <div className="container mx-auto px-4 relative z-10">
+    {/* TOP: Center badge */}
+    <div className="mb-6 flex justify-center">
+      <span
+        className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-xl shadow-sm"
+        style={{
+          borderColor: "rgba(3,41,85,0.15)",
+          color: "#032955",
+          background: "rgba(255,255,255,0.65)",
+        }}
+        aria-label="With Welford IAG, You Can"
       >
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl lg:text-5xl font-bold" style={{ color: "#032955" }}>
-              Ready to Secure Your Identities?
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Let's discuss how our IAM solutions can strengthen your security posture and streamline your operations.
+        <span className="relative flex h-2 w-2">
+          <span
+            className="animate-ping absolute inline-flex h-full w-full rounded-full"
+            style={{ background: "#0b4aa8", opacity: 0.75 }}
+          />
+          <span
+            className="relative inline-flex rounded-full h-2 w-2"
+            style={{ background: "#032955" }}
+          />
+        </span>
+        With Welford IAG, You Can
+      </span>
+    </div>
+
+    {/* Heading (80% width) */}
+    <div className="text-center mb-10">
+      <div className="mx-auto w-[90%] sm:w-[85%] lg:w-[80%]">
+        <h2 className="font-extrabold leading-tight tracking-tight text-3xl sm:text-4xl lg:text-5xl text-[#032955]">
+          The Solution: Welford Identity & Access Governance (Welford IAG)
+        </h2>
+
+        {/* Accent underline */}
+        <div className="mx-auto mt-4 h-1 w-28 rounded-full"
+             style={{ background: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }} />
+      </div>
+    </div>
+
+    {/* BODY: Left content + Right image */}
+    <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      {/* LEFT: Content */}
+      <div className="text-left">
+        <p className="text-base sm:text-lg text-slate-700">
+          Unified, Autonomous Governance for the Modern Enterprise
+        </p>
+
+        <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-700 font-light">
+          Welford IAG delivers a Zero Trust–aligned, policy-driven access governance framework
+          that transforms how organizations manage, monitor, and secure digital identities.
+          It eliminates standing privileges, automates lifecycle management, and provides
+          continuous verification — all within a single unified platform.
+        </p>
+
+        {/* Bulleted list with icons (modern, accessible) */}
+        {/* Requires: import { Users2, KeyRound, FileCheck2, ShieldCheck } from "lucide-react"; */}
+        <ul className="mt-8 space-y-6">
+          <li className="flex items-start gap-4">
+            <span
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1 shadow-sm"
+              style={{
+                color: "#032955",
+                background: "linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%)",
+                borderColor: "rgba(3,41,85,0.18)",
+              }}
+              aria-hidden="true"
+            >
+              <Users2 className="h-5 w-5" />
+            </span>
+            <p className="text-base sm:text-lg leading-relaxed text-slate-800">
+              <span className="font-semibold text-[#032955]">Govern every identity</span> — human and non-human
+              (service accounts, bots, workloads).
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {/* Default buttons (no gradient, no custom classes) */}
-              <Button asChild>
-                <Link to="/demo">
-                  Request Demo
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
-              <Button variant="outline" asChild>
-                <Link to="/contact">Contact Sales</Link>
-              </Button>
+          </li>
+
+          <li className="flex items-start gap-4">
+            <span
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1 shadow-sm"
+              style={{
+                color: "#032955",
+                background: "linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%)",
+                borderColor: "rgba(3,41,85,0.18)",
+              }}
+              aria-hidden="true"
+            >
+              <KeyRound className="h-5 w-5" />
+            </span>
+            <p className="text-base sm:text-lg leading-relaxed text-slate-800">
+              <span className="font-semibold text-[#032955]">Automate entitlement provisioning &amp; revocation</span> across
+              cloud, on-prem, and SaaS.
+            </p>
+          </li>
+
+          <li className="flex items-start gap-4">
+            <span
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1 shadow-sm"
+              style={{
+                color: "#032955",
+                background: "linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%)",
+                borderColor: "rgba(3,41,85,0.18)",
+              }}
+              aria-hidden="true"
+            >
+              <FileCheck2 className="h-5 w-5" />
+            </span>
+            <p className="text-base sm:text-lg leading-relaxed text-slate-800">
+              <span className="font-semibold text-[#032955]">Prove compliance instantly</span> with auditable, end-to-end access trails.
+            </p>
+          </li>
+
+          <li className="flex items-start gap-4">
+            <span
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1 shadow-sm"
+              style={{
+                color: "#032955",
+                background: "linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%)",
+                borderColor: "rgba(3,41,85,0.18)",
+              }}
+              aria-hidden="true"
+            >
+              <ShieldCheck className="h-5 w-5" />
+            </span>
+            <p className="text-base sm:text-lg leading-relaxed text-slate-800">
+              <span className="font-semibold text-[#032955]">Reach Zero Trust maturity</span> with continuous verification and no extra ops burden.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      {/* RIGHT: Modern Image Mockup */}
+      <div className="lg:sticky lg:top-24">
+        <div className="relative">
+          {/* floating badge */}
+          <div className="absolute -top-4 -left-2 z-10">
+            <span
+              className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium shadow-md backdrop-blur"
+              style={{ borderColor: "rgba(3,41,85,0.15)", background: "rgba(255,255,255,0.7)", color: "#032955" }}
+            >
+              <span className="h-2 w-2 rounded-full" style={{ background: "#0b4aa8" }} />
+              Live Governance Dashboard
+            </span>
+          </div>
+
+          {/* device frame */}
+          <div
+            className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1"
+            style={{
+              background: "linear-gradient(180deg, rgba(3,41,85,0.08) 0%, rgba(11,74,168,0.08) 100%)",
+            }}
+          >
+            {/* top bar */}
+            <div
+              className="flex items-center justify-between px-4 py-3 border-b"
+              style={{ borderColor: "rgba(3,41,85,0.12)", background: "rgba(255,255,255,0.8)" }}
+            >
+              <div className="flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#ffbd2e" }} />
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#28c840" }} />
+              </div>
+              <span className="text-xs font-medium tracking-wide" style={{ color: "#032955" }}>
+                Welford IAG • Governance
+              </span>
+              <div className="w-10" />
+            </div>
+
+            {/* image area */}
+            <div className="relative">
+              <img
+                src="https://images.pexels.com/photos/3184436/pexels-photo-3184436.jpeg"
+                alt="Welford IAG Governance — teamwork and control"
+                className="w-full h-[420px] object-cover"
+                loading="lazy"
+              />
+
+              {/* gradient overlay bottom for caption */}
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-36"
+                style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(3,41,85,0.45) 100%)" }}
+              />
+
+              {/* caption */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <div className="text-white">
+                  <p className="text-sm/6 opacity-90">Risk &amp; Access Posture</p>
+                  <p className="text-base font-semibold">Real-time visibility across identities &amp; entitlements</p>
+                </div>
+                <div className="hidden sm:flex items-center gap-2 bg-white/90 rounded-full px-3 py-1.5 shadow">
+                  <span className="h-2 w-2 rounded-full" style={{ background: "#28c840" }} />
+                  <span className="text-xs font-medium" style={{ color: "#032955" }}>Healthy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* info chips */}
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <span
+              className="text-xs sm:text-sm rounded-full px-3 py-1.5 border shadow-sm"
+              style={{ borderColor: "rgba(3,41,85,0.15)", background: "white", color: "#032955" }}
+            >
+              Zero Trust aligned
+            </span>
+            <span
+              className="text-xs sm:text-sm rounded-full px-3 py-1.5 border shadow-sm"
+              style={{ borderColor: "rgba(3,41,85,0.15)", background: "white", color: "#032955" }}
+            >
+              Continuous verification
+            </span>
+            <span
+              className="text-xs sm:text-sm rounded-full px-3 py-1.5 border shadow-sm"
+              style={{ borderColor: "rgba(3,41,85,0.15)", background: "white", color: "#032955" }}
+            >
+              Auditable trails
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section className="relative overflow-hidden py-20 sm:py-24 bg-transparent w-[80%] mx-auto">
+  {/* Ambient brand glows */}
+  <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div
+      className="absolute -top-24 left-1/2 -translate-x-1/2 h-[520px] w-[520px] rounded-full blur-[160px] opacity-25"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #0b4aa8 0%, transparent 70%)" }}
+    />
+    <div
+      className="absolute bottom-[-140px] right-[-120px] h-[460px] w-[460px] rounded-full blur-[160px] opacity-20"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #032955 0%, transparent 70%)" }}
+    />
+  </div>
+
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="mx-auto max-w-6xl">
+      {/* Header */}
+      <div className="text-center mb-14">
+        {/* Kicker */}
+        <div className="mb-6 flex justify-center">
+          <span
+            className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-xl shadow-sm"
+            style={{
+              borderColor: "rgba(3,41,85,0.15)",
+              color: "#032955",
+              background: "rgba(255,255,255,0.65)",
+            }}
+          >
+            <span className="relative flex h-2 w-2">
+              <span
+                className="animate-ping absolute inline-flex h-full w-full rounded-full"
+                style={{ background: "#0b4aa8", opacity: 0.75 }}
+              />
+              <span
+                className="relative inline-flex rounded-full h-2 w-2"
+                style={{ background: "#032955" }}
+              />
+            </span>
+            Core Capabilities
+          </span>
+        </div>
+
+        {/* Title with subtle underline accent */}
+        <h2 className="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight">
+          <span
+            className="relative inline-block bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+          >
+            Identity-First Automation for Modern Enterprises
+          </span>
+        </h2>
+        <div
+          className="mx-auto mt-4 h-1 w-24 rounded-full"
+          style={{ background: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
+        />
+      </div>
+
+      {/* Capabilities Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 1. JIT Access Provisioning */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 flex flex-col isolate transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_60px_rgba(3,41,85,0.10)]"
+          style={{
+            background: "linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(247,250,255,0.94) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
+          }}
+        >
+          {/* Gradient edge accent */}
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10"
+            style={{
+              boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)",
+            }}
+          />
+          <div className="flex items-start gap-4 mb-3">
+            <div
+              className="relative flex h-12 w-12 items-center justify-center rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              {/* import { Clock } from "lucide-react" */}
+              <Clock className="h-6 w-6" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900">
+              Just-in-Time (JIT) Access Provisioning
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-slate-700">
+            Grant access only when required — automatically revoked upon task completion.
+            Implements the Zero Trust principle of “never trust, always verify.”
+          </p>
+        </article>
+
+        {/* 2. Autonomous Entitlement Management */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 flex flex-col isolate transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_60px_rgba(3,41,85,0.10)]"
+          style={{
+            background: "linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(247,250,255,0.94) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
+          }}
+        >
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }}
+          />
+          <div className="flex items-start gap-4 mb-3">
+            <div
+              className="relative flex h-12 w-12 items-center justify-center rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              {/* import { Workflow } from "lucide-react" */}
+              <Workflow className="h-6 w-6" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900">
+              Autonomous Entitlement Management
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-slate-700">
+            Fully automate access provisioning and deprovisioning across all systems, eliminating
+            tickets and manual admin. Reduce fulfillment time from days to seconds.
+          </p>
+        </article>
+
+        {/* 3. Lifecycle Automation (JML) */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 flex flex-col isolate transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_60px_rgba(3,41,85,0.10)]"
+          style={{
+            background: "linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(247,250,255,0.94) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
+          }}
+        >
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }}
+          />
+          <div className="flex items-start gap-4 mb-3">
+            <div
+              className="relative flex h-12 w-12 items-center justify-center rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              {/* import { RefreshCw } from "lucide-react" */}
+              <RefreshCw className="h-6 w-6" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900">
+              Lifecycle Automation (Joiner–Mover–Leaver)
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-slate-700">
+            Ensure users have the right access throughout their employment.
+            Automatically update or revoke entitlements as roles or statuses change.
+          </p>
+        </article>
+
+        {/* 4. NPTA Governance */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 flex flex-col isolate transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_60px_rgba(3,41,85,0.10)]"
+          style={{
+            background: "linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(247,250,255,0.94) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
+          }}
+        >
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }}
+          />
+          <div className="flex items-start gap-4 mb-3">
+            <div
+              className="relative flex h-12 w-12 items-center justify-center rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              {/* import { KeyRound } from "lucide-react" */}
+              <KeyRound className="h-6 w-6" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900">
+              Non-Personal Technical Account (NPTA) Governance
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-slate-700">
+            Securely manage service accounts, application principals, and database schemas.
+            Enable credential rotation, policy enforcement, and secure API key management.
+          </p>
+        </article>
+
+        {/* 5. Multi-Cloud & Directory Integration */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 flex flex-col isolate transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_60px_rgba(3,41,85,0.10)]"
+          style={{
+            background: "linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(247,250,255,0.94) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
+          }}
+        >
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }}
+          />
+          <div className="flex items-start gap-4 mb-3">
+            <div
+              className="relative flex h-12 w-12 items-center justify-center rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              {/* import { Cloud } from "lucide-react" */}
+              <Cloud className="h-6 w-6" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900">
+              Multi-Cloud & Directory Integration
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-slate-700">
+            Unified control for Azure, AWS, Entra ID, Active Directory, and Microsoft 365 — plus flexible APIs
+            for integration with legacy systems.
+          </p>
+        </article>
+
+        {/* 6. Full Audit & Compliance Reporting */}
+        <article
+          className="group relative rounded-3xl p-7 sm:p-8 flex flex-col isolate transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_60px_rgba(3,41,85,0.10)]"
+          style={{
+            background: "linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(247,250,255,0.94) 100%)",
+            border: "1px solid rgba(3,41,85,0.12)",
+          }}
+        >
+          <span
+            className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10"
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }}
+          />
+          <div className="flex items-start gap-4 mb-3">
+            <div
+              className="relative flex h-12 w-12 items-center justify-center rounded-2xl ring-1 ring-[rgba(3,41,85,0.18)] bg-white transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            >
+              {/* import { FileCheck2 } from "lucide-react" */}
+              <FileCheck2 className="h-6 w-6" style={{ color: "#032955" }} />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900">
+              Full Audit & Compliance Reporting
+            </h3>
+          </div>
+          <p className="text-sm leading-relaxed text-slate-700">
+            Comprehensive audit trails, real-time dashboards, and forensic reporting provide irrefutable proof
+            for frameworks like ISO 27001, SOC 2, and GDPR.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section className="relative overflow-hidden py-20 sm:py-24 bg-transparent w-[80%] mx-auto">
+  {/* Ambient brand glows */}
+  <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div
+      className="absolute -top-24 left-1/2 -translate-x-1/2 h-[460px] w-[460px] rounded-full blur-[140px] opacity-20"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #0b4aa8 0%, transparent 70%)" }}
+    />
+    <div
+      className="absolute bottom-[-160px] right-[-120px] h-[420px] w-[420px] rounded-full blur-[140px] opacity-15"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #032955 0%, transparent 70%)" }}
+    />
+  </div>
+
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="mx-auto max-w-6xl">
+      {/* Header */}
+      <div className="text-center mb-10 sm:mb-14">
+        <div className="mb-6 flex justify-center">
+          <span
+            className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-xl shadow-sm"
+            style={{
+              borderColor: "rgba(3,41,85,0.15)",
+              color: "#032955",
+              background: "rgba(255,255,255,0.65)",
+            }}
+          >
+            <span className="relative flex h-2 w-2">
+              <span
+                className="animate-ping absolute inline-flex h-full w-full rounded-full"
+                style={{ background: "#0b4aa8", opacity: 0.75 }}
+              />
+              <span
+                className="relative inline-flex rounded-full h-2 w-2"
+                style={{ background: "#032955" }}
+              />
+            </span>
+            Business &amp; Security Outcomes
+          </span>
+        </div>
+
+        <h2 className="font-bold leading-tight text-3xl sm:text-5xl">
+          <span
+            className="relative inline-block bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+          >
+            Turn Governance into Measurable Advantage
+          </span>
+        </h2>
+
+        <p className="mt-4 text-base sm:text-lg text-slate-700 max-w-3xl mx-auto">
+          Welford IAG transforms access governance into a measurable business advantage.
+        </p>
+      </div>
+
+      {/* NOTE: import these icons where you use this section:
+          import { ShieldCheck, FileCheck2, Zap, Eye, Shield } from "lucide-react";
+      */}
+
+      {/* Responsive Table (table on md+, cards on xs) */}
+      <div
+        className="rounded-3xl border shadow-sm overflow-hidden backdrop-blur"
+        style={{ borderColor: "rgba(3,41,85,0.12)", background: "rgba(255,255,255,0.7)" }}
+      >
+        {/* Table header stripe */}
+        <div
+          className="hidden md:grid grid-cols-12 items-center px-6 py-4"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(3,41,85,0.08) 0%, rgba(11,74,168,0.08) 100%)",
+          }}
+        >
+          <div className="col-span-4 text-sm font-semibold tracking-wide" style={{ color: "#032955" }}>
+            Goal
+          </div>
+          <div className="col-span-4 text-sm font-semibold tracking-wide" style={{ color: "#032955" }}>
+            Result
+          </div>
+          <div className="col-span-4 text-sm font-semibold tracking-wide" style={{ color: "#032955" }}>
+            Business Impact
+          </div>
+        </div>
+
+        {/* Rows (md+ as grid rows) */}
+        <div className="hidden md:block divide-y" style={{ borderColor: "rgba(3,41,85,0.08)" }}>
+          {/* Row 1 */}
+          <div className="grid grid-cols-12 gap-6 px-6 py-6">
+            <div className="col-span-4">
+              <div className="flex items-start gap-3">
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    border: "1px solid rgba(3,41,85,0.15)",
+                  }}
+                >
+                  <ShieldCheck className="h-5 w-5" style={{ color: "#032955" }} />
+                </span>
+                <div>
+                  <div className="text-base font-semibold text-slate-900">Reduce Attack Surface</div>
+                  <div className="text-sm text-slate-600">Eliminates standing access</div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">
+                Up to <span className="font-semibold" style={{ color: "#032955" }}>90% reduction</span> in privilege exposure
+              </div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Smaller blast radius, fewer lateral-movement paths</div>
+            </div>
+          </div>
+
+          {/* Row 2 */}
+          <div className="grid grid-cols-12 gap-6 px-6 py-6">
+            <div className="col-span-4">
+              <div className="flex items-start gap-3">
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    border: "1px solid rgba(3,41,85,0.15)",
+                  }}
+                >
+                  <FileCheck2 className="h-5 w-5" style={{ color: "#032955" }} />
+                </span>
+                <div>
+                  <div className="text-base font-semibold text-slate-900">Accelerate Audits</div>
+                  <div className="text-sm text-slate-600">Generates real-time evidence</div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Faster ISO 27001 &amp; SOC 2 readiness</div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Shorter audit cycles, lower compliance cost</div>
+            </div>
+          </div>
+
+          {/* Row 3 */}
+          <div className="grid grid-cols-12 gap-6 px-6 py-6">
+            <div className="col-span-4">
+              <div className="flex items-start gap-3">
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    border: "1px solid rgba(3,41,85,0.15)",
+                  }}
+                >
+                  <Zap className="h-5 w-5" style={{ color: "#032955" }} />
+                </span>
+                <div>
+                  <div className="text-base font-semibold text-slate-900">Increase Efficiency</div>
+                  <div className="text-sm text-slate-600">Automates provisioning</div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Cuts admin workload and manual errors</div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Frees staff for higher-value work</div>
+            </div>
+          </div>
+
+          {/* Row 4 */}
+          <div className="grid grid-cols-12 gap-6 px-6 py-6">
+            <div className="col-span-4">
+              <div className="flex items-start gap-3">
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    border: "1px solid rgba(3,41,85,0.15)",
+                  }}
+                >
+                  <Eye className="h-5 w-5" style={{ color: "#032955" }} />
+                </span>
+                <div>
+                  <div className="text-base font-semibold text-slate-900">Enhance Accountability</div>
+                  <div className="text-sm text-slate-600">End-to-end visibility</div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Strengthens compliance and trust</div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Clear ownership, faster investigations</div>
+            </div>
+          </div>
+
+          {/* Row 5 */}
+          <div className="grid grid-cols-12 gap-6 px-6 py-6">
+            <div className="col-span-4">
+              <div className="flex items-start gap-3">
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    border: "1px solid rgba(3,41,85,0.15)",
+                  }}
+                >
+                  <Shield className="h-5 w-5" style={{ color: "#032955" }} />
+                </span>
+                <div>
+                  <div className="text-base font-semibold text-slate-900">Enable Zero Trust</div>
+                  <div className="text-sm text-slate-600">Continuous verification</div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Improves cyber resilience</div>
+            </div>
+            <div className="col-span-4 flex items-center">
+              <div className="text-sm text-slate-700">Risk-adaptive access, tighter controls</div>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Mobile Cards (xs–sm) */}
+        <div className="md:hidden divide-y" style={{ borderColor: "rgba(3,41,85,0.08)" }}>
+          {[
+            {
+              icon: "ShieldCheck",
+              goal: "Reduce Attack Surface",
+              result: "Eliminates standing access",
+              impact: "Up to 90% reduction in privilege exposure",
+              desc: "Smaller blast radius, fewer lateral-movement paths",
+            },
+            {
+              icon: "FileCheck2",
+              goal: "Accelerate Audits",
+              result: "Generates real-time evidence",
+              impact: "Faster ISO 27001 & SOC 2 readiness",
+              desc: "Shorter audit cycles, lower compliance cost",
+            },
+            {
+              icon: "Zap",
+              goal: "Increase Efficiency",
+              result: "Automates provisioning",
+              impact: "Cuts admin workload and manual errors",
+              desc: "Frees staff for higher-value work",
+            },
+            {
+              icon: "Eye",
+              goal: "Enhance Accountability",
+              result: "End-to-end visibility",
+              impact: "Strengthens compliance and trust",
+              desc: "Clear ownership, faster investigations",
+            },
+            {
+              icon: "Shield",
+              goal: "Enable Zero Trust",
+              result: "Continuous verification",
+              impact: "Improves cyber resilience",
+              desc: "Risk-adaptive access, tighter controls",
+            },
+          ].map((r, i) => (
+            <div key={i} className="p-5">
+              <div className="flex items-start gap-3">
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl shrink-0"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    border: "1px solid rgba(3,41,85,0.15)",
+                  }}
+                >
+                  {/* swap icon by name at integration site */}
+                  {r.icon === "ShieldCheck" && <ShieldCheck className="h-5 w-5" style={{ color: "#032955" }} />}
+                  {r.icon === "FileCheck2" && <FileCheck2 className="h-5 w-5" style={{ color: "#032955" }} />}
+                  {r.icon === "Zap" && <Zap className="h-5 w-5" style={{ color: "#032955" }} />}
+                  {r.icon === "Eye" && <Eye className="h-5 w-5" style={{ color: "#032955" }} />}
+                  {r.icon === "Shield" && <Shield className="h-5 w-5" style={{ color: "#032955" }} />}
+                </span>
+                <div>
+                  <div className="text-base font-semibold text-slate-900">{r.goal}</div>
+                  <div className="mt-1 text-sm text-slate-600">{r.result}</div>
+                </div>
+              </div>
+              <div className="mt-3 text-sm">
+                <div className="text-slate-700">
+                  <span className="font-medium" style={{ color: "#032955" }}>
+                    Impact:&nbsp;
+                  </span>
+                  {r.impact}
+                </div>
+                <div className="text-slate-600">{r.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footnote */}
+<p
+  className="mt-12 text-base sm:text-lg leading-relaxed text-center font-medium max-w-3xl mx-auto px-4"
+  style={{
+    color: "#032955",
+    background:
+      "linear-gradient(90deg, rgba(11,74,168,0.08) 0%, rgba(3,41,85,0.08) 100%)",
+    borderRadius: "1rem",
+    padding: "1.25rem",
+    boxShadow: "0 4px 20px rgba(3,41,85,0.08)",
+  }}
+>
+  By replacing{" "}
+  <span className="font-semibold text-transparent bg-clip-text"
+    style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}>
+    manual control
+  </span>{" "}
+  with{" "}
+  <span className="font-semibold text-transparent bg-clip-text"
+    style={{ backgroundImage: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}>
+    continuous governance
+  </span>
+  , Welford IAG converts compliance from a reactive burden into a{" "}
+  <span className="font-semibold text-transparent bg-clip-text"
+    style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}>
+    strategic differentiator.
+  </span>
+</p>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section className="relative overflow-hidden py-16 sm:py-20 bg-transparent w-[80%] mx-auto">
+  {/* soft brand glows */}
+  <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div
+      className="absolute -top-24 left-1/2 -translate-x-1/2 h-[380px] w-[380px] rounded-full blur-[140px] opacity-25"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #0b4aa8 0%, transparent 70%)" }}
+    />
+    <div
+      className="absolute bottom-[-140px] right-[-80px] h-[340px] w-[340px] rounded-full blur-[140px] opacity-20"
+      style={{ background: "radial-gradient(40% 40% at 50% 50%, #032955 0%, transparent 70%)" }}
+    />
+  </div>
+
+  <div className="container mx-auto px-4 relative z-10 max-w-5xl">
+    {/* kicker badge */}
+    <div className="mb-6 flex justify-center">
+      <span
+        className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-xl shadow-sm"
+        style={{ borderColor: "rgba(3,41,85,0.18)", color: "#032955", background: "rgba(255,255,255,0.65)" }}
+        aria-label="Why It Matters"
+      >
+        <span className="relative flex h-2 w-2">
+          <span
+            className="animate-ping absolute inline-flex h-full w-full rounded-full"
+            style={{ background: "#0b4aa8", opacity: 0.75 }}
+          />
+          <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#032955" }} />
+        </span>
+        Built on Trust
+      </span>
+    </div>
+
+    {/* title + underline */}
+    <div className="text-center">
+      <h2 className="font-extrabold leading-tight text-3xl sm:text-4xl text-[#032955] tracking-tight">
+        Why It Matters
+      </h2>
+      <div
+        className="mx-auto mt-3 h-1 w-28 rounded-full"
+        style={{ background: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
+        aria-hidden
+      />
+    </div>
+
+    {/* highlighted quote (differentiated) */}
+    <figure
+      className="relative mx-auto mt-8 max-w-4xl rounded-3xl p-6 sm:p-8 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(246,249,255,0.9) 100%)",
+        border: "1px solid rgba(3,41,85,0.12)",
+        boxShadow: "0 16px 50px rgba(3,41,85,0.10)",
+      }}
+    >
+      {/* subtle radial sheen */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-16 -right-10 h-48 w-48 rounded-full blur-3xl opacity-40"
+        style={{ background: "radial-gradient(50% 50% at 50% 50%, #0b4aa8 0%, transparent 70%)" }}
+      />
+
+      {/* quote header row (text only, icon removed) */}
+      <div className="mb-4 flex items-center justify-center gap-2 text-[#032955]">
+        <span className="text-xs sm:text-sm font-medium tracking-wide">Principle</span>
+      </div>
+
+      <blockquote className="relative">
+        <p className="text-center text-[1.25rem] sm:text-[1.5rem] leading-relaxed font-semibold"
+           style={{ color: "#0f172a" }}>
+          “Perimeter security keeps threats out. Governance keeps your organization accountable.”
+        </p>
+      </blockquote>
+
+      {/* decorative divider */}
+      <div
+        className="mx-auto mt-6 h-[2px] w-16 rounded-full"
+        style={{ background: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
+        aria-hidden
+      />
+    </figure>
+
+    {/* copy */}
+    <div className="mx-auto max-w-3xl text-center space-y-5 mt-8">
+      <p className="text-base sm:text-lg text-slate-700">
+        Identity governance defines the foundation of digital trust.
+      </p>
+      <p className="text-base sm:text-lg text-slate-700">
+        With Welford IAG, organizations move beyond visibility — to actionable, auditable control
+        over every identity and privilege.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+      {/* CTA Section (no gradient buttons; brand accents via #032955) */}
+      <CtaSection />
+
+
+
     </Layout>
   );
 };
