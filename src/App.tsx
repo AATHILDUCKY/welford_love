@@ -82,7 +82,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
 
             {/* Solutions */}
-            <Route path="/solutions/identity-access-management" element={<IdentityAccessManagement />} />
+            <Route path="/solutions/identity-access-governance" element={<IdentityAccessManagement />} />
             <Route path="/solutions/grc-consultancy" element={<GRCConsultancy />} />
             <Route path="/solutions/cloud-security" element={<CloudSecurity />} />
 

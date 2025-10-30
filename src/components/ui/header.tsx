@@ -32,9 +32,9 @@ const Header = () => {
 
   const solutions: MenuItem[] = [
     {
-      name: "Identity & Access Management",
-      href: "/solutions/identity-access-management",
-      description: "Comprehensive IAM solutions",
+      name: "Identity & Access Governance",
+      href: "/solutions/identity-access-governance",
+      description: "Comprehensive IAG solutions",
     },
     {
       name: "GRC Consultancy",
