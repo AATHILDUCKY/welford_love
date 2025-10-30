@@ -149,21 +149,19 @@ const IdentityAccessManagement = () => {
         </div>
 
         {/* Title */}
-        <h2 className="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight mb-4">
-          <span className="text-slate-900">
-            Identity Risk Is{" "}
-            <span
-              className="relative inline-block bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
-            >
-              Business Risk
-            </span>
+        
+        <h2 className="font-bold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight">
+          <span
+            className="relative inline-block bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+          >
+            Identity Risk Is Business Risk
           </span>
         </h2>
 
         {/* Accent underline */}
         <div
-          className="mx-auto h-1 w-28 rounded-full"
+          className="mx-auto mt-4 h-1 w-28 rounded-full"
           style={{ background: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
         />
 
@@ -290,7 +288,7 @@ const IdentityAccessManagement = () => {
             </div>
             <h3 className="text-xl font-semibold text-slate-900">Compliance Pressure</h3>
           </div>
-          <p className="mt-4 text-base leading-relaxed text-slate-700">
+        <p className="mt-4 text-base leading-relaxed text-slate-700">
             Proving ISO 27001, GDPR controls is costly and time-consuming.
           </p>
           <span
@@ -324,8 +322,7 @@ const IdentityAccessManagement = () => {
           </p>
           <span
             className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.16)" }}
-          />
+            style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.16)" }} />
         </article>
 
         {/* Grid balance spacer (keeps rhythm on some viewports) */}
@@ -441,9 +438,14 @@ const IdentityAccessManagement = () => {
 
     {/* Heading (80% width) */}
     <div className="text-center mb-10">
-      <div className="mx-auto w-[90%] sm:w-[85%] lg:w-[80%]">
-        <h2 className="font-extrabold leading-tight tracking-tight text-3xl sm:text-4xl lg:text-5xl text-[#032955]">
-          The Solution: Welford Identity & Access Governance (Welford IAG)
+      <div className="mx-auto w-[90%] sm:w:[85%] lg:w-[80%]">
+        <h2 className="font-bold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight">
+          <span
+            className="relative inline-block bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+          >
+            The Solution: Welford Identity & Access Governance (Welford IAG)
+          </span>
         </h2>
 
         {/* Accent underline */}
@@ -679,7 +681,7 @@ const IdentityAccessManagement = () => {
         </div>
 
         {/* Title with subtle underline accent */}
-        <h2 className="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight">
+        <h2 className="font-bold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight">
           <span
             className="relative inline-block bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
@@ -814,7 +816,7 @@ const IdentityAccessManagement = () => {
               {/* import { KeyRound } from "lucide-react" */}
               <KeyRound className="h-6 w-6" style={{ color: "#032955" }} />
               <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
-                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
             <h3 className="text-lg font-semibold text-slate-900">
               Non-Personal Technical Account (NPTA) Governance
@@ -846,7 +848,7 @@ const IdentityAccessManagement = () => {
               {/* import { Cloud } from "lucide-react" */}
               <Cloud className="h-6 w-6" style={{ color: "#032955" }} />
               <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
-                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
             <h3 className="text-lg font-semibold text-slate-900">
               Multi-Cloud & Directory Integration
@@ -878,7 +880,7 @@ const IdentityAccessManagement = () => {
               {/* import { FileCheck2 } from "lucide-react" */}
               <FileCheck2 className="h-6 w-6" style={{ color: "#032955" }} />
               <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
-                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.22)" }} />
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(11,74,168,0.18)" }} />
             </div>
             <h3 className="text-lg font-semibold text-slate-900">
               Full Audit & Compliance Reporting
@@ -935,7 +937,7 @@ const IdentityAccessManagement = () => {
           </span>
         </div>
 
-        <h2 className="font-bold leading-tight text-3xl sm:text-5xl">
+        <h2 className="font-bold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight">
           <span
             className="relative inline-block bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
@@ -1260,9 +1262,15 @@ const IdentityAccessManagement = () => {
 
     {/* title + underline */}
     <div className="text-center">
-      <h2 className="font-extrabold leading-tight text-3xl sm:text-4xl text-[#032955] tracking-tight">
-        Why It Matters
-      </h2>
+
+      <h2 className="font-bold leading-tight text-4xl sm:text-5xl lg:text-6xl tracking-tight">
+          <span
+            className="relative inline-block bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #032955 0%, #0b4aa8 100%)" }}
+          >
+            Why It Matters
+          </span>
+        </h2>
       <div
         className="mx-auto mt-3 h-1 w-28 rounded-full"
         style={{ background: "linear-gradient(90deg, #0b4aa8 0%, #032955 100%)" }}
