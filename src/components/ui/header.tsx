@@ -412,7 +412,7 @@ const Header = () => {
                   </Link>
 
                   <Link
-                    to="/company/about"
+                    to="/about"
                     className={cn(
                       "block rounded-lg px-3 py-2.5 text-[15px] font-semibold",
                       "border border-transparent hover:border-border",
@@ -426,7 +426,7 @@ const Header = () => {
                   </Link>
 
                   <Link
-                    to="/company/careers"
+                    to="/careers"
                     className={cn(
                       "block rounded-lg px-3 py-2.5 text-[15px] font-semibold",
                       "border border-transparent hover:border-border",
