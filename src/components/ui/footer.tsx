@@ -52,10 +52,10 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  to="/solutions/identity-access-management"
+                  to="/solutions/identity-access-governance"
                   className="inline-flex items-center gap-1 text-background/80 hover:text-primary transition-colors underline-offset-4 hover:underline"
                 >
-                  Identity &amp; Access Management
+                  Identity &amp; Access Governance
                 </Link>
               </li>
               <li>
@@ -122,7 +122,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  to="/company/about"
+                  to="/about"
                   className="inline-flex items-center gap-1 text-background/80 hover:text-primary transition-colors underline-offset-4 hover:underline"
                 >
                   About Us
@@ -130,7 +130,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/company/careers"
+                  to="/careers"
                   className="inline-flex items-center gap-1 text-background/80 hover:text-primary transition-colors underline-offset-4 hover:underline"
                 >
                   Careers
@@ -174,7 +174,7 @@ const Footer = () => {
                 to="/terms-of-use"
                 className="hover:text-primary transition-colors underline-offset-4 hover:underline"
               >
-                Terms of Service
+                Terms of Use
               </Link>
             </div>
           </div>

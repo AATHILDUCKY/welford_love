@@ -274,7 +274,7 @@ const ProductsIAG = () => {
             {/* Visual */}
             <div className="bg-muted rounded-xl p-6 lg:p-8 border border-border">
               <img
-                src="https://images.pexels.com/photos/7418077/pexels-photo-7418077.jpeg"
+                src="https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/inteeee.jpg"
                 alt="Welford IAG Dashboard"
                 className="rounded-lg shadow-lg w-full"
               />

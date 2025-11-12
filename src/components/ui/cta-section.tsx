@@ -85,7 +85,7 @@ const CtaSection = () => {
                   className="group w-full sm:w-auto border border-white/25 bg-transparent hover:bg-white/10 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
                   asChild
                 >
-                  <Link to="/resources/videos-demos" aria-label="Explore Welford IAG">
+                  <Link to="/products/welford-iag" aria-label="Explore Welford IAG">
                     <span>Explore Welford IAG</span>
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
