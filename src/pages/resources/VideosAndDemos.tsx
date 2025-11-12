@@ -308,7 +308,7 @@ const VideosAndDemos = () => {
           subtitle="Watch product demos and use‑case videos to see how Welford IAG simplifies identity governance."
           bullets={["Product overviews", "Real‑world use cases", "Quick how‑tos"]}
           image={{
-            src: "https://images.pexels.com/photos/33440278/pexels-photo-33440278.jpeg",
+            src: "https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/13.webp",
             alt: "Welford IAG demos overview",
           }}
           imageBadgeText="New videos added regularly"

@@ -100,7 +100,7 @@ const GRCConsultancy = () => {
     icon: <Phone className="mr-2 h-4 w-4" />,
   }}
   image={{
-    src: "https://plus.unsplash.com/premium_photo-1661778490723-371305b4fb06?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/10.webp",
     alt: "Welford GRC Consultancy overview",
   }}
   imageBadgeText="30–45 min session"
@@ -584,7 +584,7 @@ const GRCConsultancy = () => {
             {/* Make image area flex-1 to fill remaining height; image absolutely covers it */}
             <div className="relative flex-1 min-h-[420px]">
               <img
-                src="https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/pexels-hillaryfox-1595385.jpg"
+                src="https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/partner_3.webp"
                 alt="Welford GRC — collaboration and assurance"
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"

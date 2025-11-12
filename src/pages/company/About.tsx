@@ -741,7 +741,7 @@ const About = () => {
           bullets={["Explore Welford IAG", "Book a Demo", "Partner with Us"]}
           primaryCta={{ label: "Explore Welford IAG", href: "/products/welford-iag", icon: <ArrowRight className="mr-2 h-4 w-4" /> }}
           secondaryCta={{ label: "Book a Demo", href: "/demo", icon: <Calendar className="mr-2 h-4 w-4" /> }}
-          image={{ src: "https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/aboutus.jpg", alt: "About Welford Systems" }}
+          image={{ src: "https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/3.webp", alt: "About Welford Systems" }}
           imageBadgeText="Since 2024 • London"
           id="about-hero"
         />

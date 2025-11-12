@@ -126,7 +126,7 @@ const Blog = () => {
         subtitle="Expert updates and thought leadership from the Welford Systems team."
         bullets={["Identity Security", "Access Governance", "Cloud Protection"]}
         image={{
-          src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1600&auto=format&fit=crop",
+          src: "https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/colored-bg.webp",
           alt: "Welford Blog overview",
         }}
         imageBadgeText="Latest insights & updates"

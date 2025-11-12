@@ -260,7 +260,7 @@ const ProductsIAG = () => {
           icon: <Phone className="mr-2 h-4 w-4" />,
         }}
         image={{
-          src: "https://plus.unsplash.com/premium_photo-1661778490723-371305b4fb06?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0",
+          src: "https://raw.githubusercontent.com/AATHILDUCKY/my-assets/refs/heads/main/9.webp",
           alt: "Welford IAG live preview",
         }}
         imageBadgeText="30–45 min session"
