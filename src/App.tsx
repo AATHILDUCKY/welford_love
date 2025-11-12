@@ -23,7 +23,8 @@ import ProductsIAG from "./pages/ProductsIAG";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
-
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
 // Blog posts
 import 
 { 
@@ -102,6 +103,8 @@ const App = () => (
             <Route path="/partners" element={<Partners />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-use" element={<TermsOfUse />} />
 
             {/* Admin entry — if not authed, shows login; if authed, redirects to /admin/dashboard */}
             <Route path="/admin" element={<AdminSwitch />} />
