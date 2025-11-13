@@ -54,6 +54,32 @@ const CompanyOverviewCentered: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Heading */}
         <header className="text-center max-w-3xl mx-auto">
+          {/* TOP: Center badge */}
+          <div className="mb-4 flex justify-center">
+            <span
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-xl shadow-sm"
+              style={{
+                borderColor: "rgba(3,41,85,0.15)",
+                color: "#032955",
+                background: "rgba(255,255,255,0.8)",
+              }}
+            >
+              <span className="relative flex h-2 w-2">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full"
+                  style={{ background: "#0b4aa8", opacity: 0.75 }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ background: "#032955" }}
+                />
+              </span>
+              
+              <span>Governance Redefined</span>
+            </span>
+          </div>
+
+
           <h2
             id="company-overview-heading"
             className="text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight"

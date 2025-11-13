@@ -178,10 +178,28 @@ const KeyCapabilities = () => {
 
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center justify-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white ring-1 ring-[#032955]/10 shadow-sm mb-3 sm:mb-4">
-            <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-[#032955] mr-2" />
-            <span className="text-xs sm:text-sm font-medium tracking-wide text-[#032955]">
-              Security + Access
+          {/* TOP: Center badge */}
+          <div className="mb-4 flex justify-center">
+            <span
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-xl shadow-sm"
+              style={{
+                borderColor: "rgba(3,41,85,0.15)",
+                color: "#032955",
+                background: "rgba(255,255,255,0.8)",
+              }}
+            >
+              <span className="relative flex h-2 w-2">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full"
+                  style={{ background: "#0b4aa8", opacity: 0.75 }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ background: "#032955" }}
+                />
+              </span>
+              
+              <span>Security + Access</span>
             </span>
           </div>
           <h2
